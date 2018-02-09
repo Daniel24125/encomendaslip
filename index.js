@@ -28,9 +28,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.use("/", encomendas);
 // app.use("/gestao", gestao.router);
 
-app.get("/",(req, res)=>{
-  res.send("HELLO")
-})
 
 app.listen(app.get("port"), function() {
   console.log("App is listenning o port 3000");

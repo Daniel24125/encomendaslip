@@ -1,25 +1,25 @@
-.menu-icon-container 
-  width: 100px
-  position: relative
-  height: 60px
-  cursor: pointer
-  transition: all 100ms ease-in-out
+.drawerHeaderContainer
+  display: flex
+  justify-content: flex-end
+  width: 100%
+  .menu-icon-container 
+    width: $collapsedDrawerWidth
+    position: relative
+    height: 60px
+    cursor: pointer
+    transition: all 100ms ease-in-out 
+    .line 
+      position: absolute
+      background: white
+      width: 25px
+      height: 2px
+      @include centerHor
+      transition: all 100ms ease
+    .line-top 
+      top: 39%
 
-.line 
-  position: absolute
-  background: white
-  width: 30px
-  height: 2px
-  left: 50%
-  transform: translateX(-50%)
-  transition: all 100ms ease
+    .line-center 
+      top: 50%
 
-
-.line-top 
-  top: 39%
-
-.line-center 
-  top: 50%
-
-.line-bottom 
-  top: 61%
+    .line-bottom 
+      top: 61%

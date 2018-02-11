@@ -1,0 +1,57 @@
+.wrapper
+  width: 100% 
+  height: 100vh
+  display: flex 
+  flex-direction: row
+  .drawerContainer
+    height: 100%
+    width: $collapsedDrawerWidth
+    background: #252d3a
+    transition: width 300ms ease-in-out
+    z-index: 5000
+    display: flex 
+    flex-direction: column
+    align-items: center
+    position: relative
+    .navListContainer
+      display: flex 
+      justify-content: flex-start
+      flex-direction: column
+      width: 100% 
+      height: 45%
+      margin-top: 30px
+.navItemContainer
+  width: 100%
+  height: $collapsedDrawerWidth
+  display: flex
+  align-items: center 
+  justify-content: flex-start
+  flex-direction: row
+  color: $drawerItemColor
+  font-size: 16px
+  cursor: pointer
+  flex-wrap: wrap
+  &:hover 
+    color: $acitveColor 
+  &:hover .fa 
+    color: $activeIconColor
+  .iconContainer
+    width: $collapsedDrawerWidth
+    display: flex
+    align-items: center 
+    justify-content: center
+  .navDesc
+    font-size: 14px
+.active
+  color: $acitveColor
+  .fa 
+    color: $activeIconColor
+.optionsContainer
+  display: flex 
+  justify-content: flex-end
+  flex-direction: column
+  height: 50%
+  width: 100%
+
+  .contentContainer
+    width: calc(100% - $collapsedDrawerWidth)

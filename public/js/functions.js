@@ -1,15 +1,20 @@
 $(document).ready(function(){
-  let menuClicked = 0
+  let menuClicked = false
   $(".menu-icon-container").click(()=>{
     if(menuClicked){
-      menuClicked = 0
+      menuClicked = false
       hideNav()
     }else{
-      menuClicked = 1
+      menuClicked = true
       showNav()
     }
-    
+
   });
+
+  $(".navListContainer .navItemContainer").click(function(){
+    $(".active").removeClass("active");
+    $(this).addClass("active")
+  }); 
   
   function showNav() {
     $(".line-top").css({
@@ -23,6 +28,11 @@ $(document).ready(function(){
       "top": "50%",
       "transform": "translate(-50%, -50%) rotate(45deg)"
     });
+    $(".drawerContainer").css("width", "250px")
+    setTimeout(()=>{
+      $(".navDesc").removeClass("hideComponent")
+    }, 300)
+    
   }
 
   function hideNav() {
@@ -37,5 +47,8 @@ $(document).ready(function(){
       "top": "61%",
       "transform": "translateX(-50%) rotate(0deg)"
     });
+    $(".navDesc").addClass("hideComponent")
+    $(".drawerContainer").css("width", "50px")
+    
   }
 })

@@ -28,7 +28,7 @@ $(document).ready(function(){
       "top": "50%",
       "transform": "translate(-50%, -50%) rotate(45deg)"
     });
-    $(".drawerContainer").css("width", "250px")
+    $(".drawerContainer").css("width", "230px")
     setTimeout(()=>{
       $(".navDesc").removeClass("hideComponent")
     }, 300)

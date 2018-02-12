@@ -149,7 +149,7 @@ a {
     -ms-flex-pack: center;
     justify-content: center; }
   .navItemContainer .navDesc {
-    font-size: 14px; }
+    font-size: 12px; }
 
 .active {
   color: #ecf0f1; }
@@ -169,5 +169,11 @@ a {
   flex-direction: column;
   height: 50%;
   width: 100%; }
+  .optionsContainer .navItemContainer {
+    height: 40px; }
+    .optionsContainer .navItemContainer .iconContainer {
+      font-size: 14px; }
+    .optionsContainer .navItemContainer .navDesc {
+      font-size: 12px; }
   .optionsContainer .contentContainer {
     width: calc(100% - $collapsedDrawerWidth); }

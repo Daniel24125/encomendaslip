@@ -25,13 +25,28 @@ a {
     cursor: auto; }
 
 .contentContainer {
-  width: 100%;
   position: relative;
-  height: 100%; }
+  height: 100%;
+  padding-left: 50px;
+  width: 100%; }
 
 .hideComponent {
   visibility: hidden;
   opacity: 0; }
+
+.blackBackground {
+  background: black;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  position: absolute;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out; }
+
+iframe {
+  width: 100%;
+  height: 100vh; }
 
 .drawerHeaderContainer {
   display: -webkit-box;
@@ -96,7 +111,7 @@ a {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    position: relative; }
+    position: absolute; }
     .wrapper .drawerContainer .navListContainer {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -175,5 +190,3 @@ a {
       font-size: 14px; }
     .optionsContainer .navItemContainer .navDesc {
       font-size: 12px; }
-  .optionsContainer .contentContainer {
-    width: calc(100% - $collapsedDrawerWidth); }

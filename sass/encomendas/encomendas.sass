@@ -1,0 +1,35 @@
+.encomendasWrapper
+  width: 100% 
+  height: 100vh
+  display: flex 
+  flex-direction: column
+  .searchContainer
+    width: 100% 
+    height: 60px 
+    background: $searchContainer
+    display: flex 
+    align-items: center 
+    justify-content: center 
+    input 
+      width: 40% 
+      padding: 10px 
+      background: $searchInput
+      color: white 
+      border: none
+      margin-right: 10px 
+      &::placeholder 
+        color: $acitveColor
+    select 
+      padding: 9px 
+      border: none 
+      margin-right: 10px 
+    .submitButton
+      width: 36px 
+      height: 36px 
+      color: white 
+      display: flex 
+      align-items: center 
+      justify-content: center
+      cursor: pointer
+      background: $searchInput
+      border-radius: 3px

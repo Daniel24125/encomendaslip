@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/encomendas.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:100,300,400,500,700" rel="stylesheet">
+</head>
+
+<body>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://use.fontawesome.com/c633fd4a23.js"></script>
+  <script type="text/javascript" src="../js/encomendas.js"></script>
+
+  <div class="encomendasWrapper">
+    <form id="searchForm">
+      <div class="searchContainer">
+        <input id="searchTerm" type="text" placeholder="Pesquisar termo" name="searchTerm">
+        <select id="searchParameter">
+          <option value="fornecedor">Fornecedor</option>
+          <option value="notaEncomenda">Nota de Encomenda</option>
+          <option value="data">Data Pedido</option>
+          <option value="remetente">Remetente</option>
+          <option value="fundo">Fundo</option>
+          <option value="cabimentado">Cabimentado</option>
+          <option value="faturado">Faturado</option>
+          <option value="estado">Estado</option>
+          <option value="pedidoCredito">Pedido Crédito</option>
+          <option value="fornecedor">Fornecedor</option>
+        </select>
+        <div class="submitButton">
+          <div class="fa fa-search"></div>
+        </div>
+      </div>
+    </form>
+    <div class="listContainer">
+      <table class="listTable">
+        <tr class="tableHeader">
+          <th class="">DATA</th>
+          <th class="">REMETENTE</th>
+          <th class="">RÚBRICA</th>
+          <th class="">FORNECEDOR</th>
+          <th class="">NE</th>
+          <th class="">FUNDO</th>
+          <th class="">CABIMENTADO</th>
+          <th class="">FATURADO</th>
+          <th class="">DATA FATURA</th>
+          <th class="estado"></th>
+          <th class="info"></th>
+          <th class="credito"></th>
+          <th class="faturaSecretaria"></th>
+          <th class="edit"></th>
+          <th class="delete"></th>
+        </tr>
+        <tr>
+            <th class="">12/12/1212</th>
+            <th class="">Daniel</th>
+            <th class="">Consumíveis e Reagentes</th>
+            <th class="">VWR</th>
+            <th class="">NE.001.2016.0015002</th>
+            <th class="">ENROBEE</th>
+            <th class="">947.1</th>
+            <th class="">947.1</th>
+            <th class="">30/06/2016</th>
+            <th class="stateIcon estado feito"><span class="fa fa-check"></span></th>
+            
+            <th class="stateIcon credito"><span class="fa fa-credit-card"></span></th>
+            <th class="stateIcon faturaSecretaria"><span class="fa fa-file"></span></th>
+            <th class="stateIcon editItem edit"><span class="fa fa-pencil"></span></th>
+            <th class="stateIcon deleteItem delete"><span class="fa fa-times-circle"></span></th>
+            <th class="stateIcon info itemMoreInfo"><span class="fa fa-caret-down"></span></th>
+          </tr>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

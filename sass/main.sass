@@ -26,11 +26,23 @@ a
     cursor: auto
 
 .contentContainer
-  width: 100% 
   position: relative
   height: 100%
+  padding-left: $collapsedDrawerWidth
+  width: 100%
 
 .hideComponent
   visibility: hidden 
   opacity: 0
-  
+
+.blackBackground
+  background: black 
+  width: 100% 
+  height: 100% 
+  opacity: 0.6
+  position: absolute
+  transition: all 300ms ease-in-out
+
+iframe
+  width: 100% 
+  height: 100vh

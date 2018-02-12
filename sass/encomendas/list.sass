@@ -1,0 +1,41 @@
+.listContainer 
+  width: 100% 
+  background: $flatGrey
+  height: 100%
+  display: flex 
+  justify-content: center 
+  padding-top: 30px
+  .listTable
+    width: 95% 
+    background: white
+    @include cardStyle
+    padding: 10px
+    tr 
+      height: 40px
+      border-bottom: 1px solid $flatGrey
+      th 
+        text-align: left
+        font-size: 13px 
+        color: $tableText
+        font-weight: 400 
+      .stateIcon
+        width: 25px !important
+        color: $tableHeaderText
+    .tableHeader
+      th 
+        color: $tableHeaderText
+        font-size: 12px 
+        font-weight: 500 
+
+.editItem
+  color: $editIconColor !important
+  cursor: pointer
+.deleteItem
+  color: $deleteIconColor !important
+  cursor: pointer
+.feito 
+  color: $feitoColor !important
+.itemMoreInfo
+  cursor: pointer !important
+  &:hover 
+    color: $tableText !important

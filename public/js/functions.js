@@ -1,21 +1,26 @@
-$(document).ready(function(){
+$(document).ready(function () {
   let menuClicked = false
-  $(".menu-icon-container").click(()=>{
-    if(menuClicked){
+  $(".menu-icon-container").click(() => {
+    if (menuClicked) {
       menuClicked = false
       hideNav()
-    }else{
+    } else {
       menuClicked = true
       showNav()
     }
 
   });
 
-  $(".navListContainer .navItemContainer").click(function(){
+  $(".navListContainer .navItemContainer").click(function () {
     $(".active").removeClass("active");
+    menuClicked = !menuClicked;
+    hideNav();
+    $("iframe").attr("src", "pages/" + $(this).attr("id") + ".html");
     $(this).addClass("active")
-  }); 
-  
+  });
+
+  $("iframe").attr("src", "pages/" + $(".active").attr("id") + ".html")
+
   function showNav() {
     $(".line-top").css({
       "top": "50%",
@@ -29,10 +34,10 @@ $(document).ready(function(){
       "transform": "translate(-50%, -50%) rotate(45deg)"
     });
     $(".drawerContainer").css("width", "230px")
-    setTimeout(()=>{
+    setTimeout(() => {
       $(".navDesc").removeClass("hideComponent")
     }, 300)
-    
+    $(".blackBackground").removeClass("hideComponent")
   }
 
   function hideNav() {
@@ -49,6 +54,6 @@ $(document).ready(function(){
     });
     $(".navDesc").addClass("hideComponent")
     $(".drawerContainer").css("width", "50px")
-    
+    $(".blackBackground").addClass("hideComponent")
   }
 })

@@ -11,7 +11,7 @@
 
 <body>
   <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://use.fontawesome.com/c633fd4a23.js"></script>
+  <script src="../js/fontawesome-all.min.js"></script>
   <script type="text/javascript" src="../js/encomendas.js"></script>
 
   <div class="encomendasWrapper">
@@ -33,11 +33,31 @@
         <div class="submitButton">
           <div class="fa fa-search"></div>
         </div>
+        <div class="newListItemBtn">NOVO REGISTO</div>
       </div>
     </form>
+    <div class="loader">
+      <span>A CARREGAR LISTA...</span>
+    </div>
     <div class="listContainer">
-      <table class="listTable">
+      
+      <div class="moreInfoContainer">
+        <div class="moreInfoContent pedidoContainer ">
+          <span>Nº DE PEDIDO</span>
+          <div class="textContainer">
+            <span class="pedidoText"></span>
+          </div>
+        </div>
+        <div class="moreInfoContent comentariosContainer ">
+          <span>COMENTÁRIOS</span> 
+          <div class="textContainer">
+            <span class="comentariosText"></span>
+          </div>
+        </div>
+      </div>
+      <table  class="listTable">
         <tr class="tableHeader">
+          <th class="estado"></th>
           <th class="">DATA</th>
           <th class="">REMETENTE</th>
           <th class="">RÚBRICA</th>
@@ -46,35 +66,22 @@
           <th class="">FUNDO</th>
           <th class="">CABIMENTADO</th>
           <th class="">FATURADO</th>
-          <th class="">DATA FATURA</th>
-          <th class="estado"></th>
+          <th class="">DATA FATURA</th>   
           <th class="info"></th>
           <th class="credito"></th>
           <th class="faturaSecretaria"></th>
           <th class="edit"></th>
           <th class="delete"></th>
         </tr>
-        <tr>
-            <th class="">12/12/1212</th>
-            <th class="">Daniel</th>
-            <th class="">Consumíveis e Reagentes</th>
-            <th class="">VWR</th>
-            <th class="">NE.001.2016.0015002</th>
-            <th class="">ENROBEE</th>
-            <th class="">947.1</th>
-            <th class="">947.1</th>
-            <th class="">30/06/2016</th>
-            <th class="stateIcon estado feito"><span class="fa fa-check"></span></th>
-            
-            <th class="stateIcon credito"><span class="fa fa-credit-card"></span></th>
-            <th class="stateIcon faturaSecretaria"><span class="fa fa-file"></span></th>
-            <th class="stateIcon editItem edit"><span class="fa fa-pencil"></span></th>
-            <th class="stateIcon deleteItem delete"><span class="fa fa-times-circle"></span></th>
-            <th class="stateIcon info itemMoreInfo"><span class="fa fa-caret-down"></span></th>
-          </tr>
+        <tbody id="tabelaEncomendas"></tbody>
       </table>
+
+      <div class="loadMoreContainer">
+        <span class="loadContent">CARREGAR MAIS REGISTOS</span> 
+      </div>
     </div>
   </div>
+
 </body>
 
 </html>

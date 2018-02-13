@@ -1,52 +1,123 @@
 $(document).ready(function () {
+  let moreInfoClicked = false;
+  let allData, allKeys;
   $("#searchForm").submit((e) => {
     e.preventDefault();
   });
-  let dumData = [{
-      "cabimentado": "947.1",
-      "data": "30/06/2016",
-      "dataFatura": "06/07/16",
-      "dif": 0,
-      "estado": "Feito",
-      "faturaAno": "2016",
-      "faturaMes": "7",
-      "faturaSecretaria": "Sim",
-      "faturado": 947.1,
-      "fornecedor": "VWR",
-      "fundo": "ENROBEE",
-      "notaEncomenda": "NE.001.2016.0015002",
-      "notas": "Crédito",
-      "pedido": "9002240648",
-      "pedidoAno": 2016,
-      "pedidoCredito": "Não",
-      "pedidoMes": 6,
-      "remetente": "",
-      "rubrica": "Consumíveis e Reagentes"
-    },
-    {
-      "cabimentado": "947.1",
-      "data": "30/06/2016",
-      "dataFatura": "06/07/16",
-      "dif": 0,
-      "estado": "Feito",
-      "faturaAno": "2016",
-      "faturaMes": "7",
-      "faturaSecretaria": "Sim",
-      "faturado": 947.1,
-      "fornecedor": "VWR",
-      "fundo": "ENROBEE",
-      "notaEncomenda": "NE.001.2016.0015002",
-      "notas": "Crédito",
-      "pedido": "9002240648",
-      "pedidoAno": 2016,
-      "pedidoCredito": "Não",
-      "pedidoMes": 6,
-      "remetente": "",
-      "rubrica": "Consumíveis e Reagentes"
-    }
-  ];
 
-  dumData.map((item)=>{
-    console.log(item)
+  fetch('/getData')
+    .then(response => response.json())
+    .then(res => {
+      $(".loader").addClass("hideComponent")
+      allData = res.data.reverse();  
+      allKeys = res.keys.reverse();
+      allData.map((item, index)=>retrieveData(allKeys[index], item)) 
+    });
+
+  $("body").on("click", ".itemMoreInfo", function () {
+    moreInfoClicked = !moreInfoClicked;
+    let id = $(this).parent().attr("id");
+    let dataIndex = allKeys.indexOf(id);
+    $(".pedidoText").html(allData[dataIndex].pedido);
+    $(".comentariosText").html(allData[dataIndex].notas);
+    $(this).children().toggleClass("fa-caret-down fa-caret-up")
+    if (moreInfoClicked) {
+      $(".moreInfoContainer").css("top", 30 + $(this).position().top + parseFloat($(this).parent().css("height")))
+        .animate({
+          "height": "120px"
+        }, 300, function () {
+          $(".pedidoContainer, .comentariosContainer").css({
+            "opacity": 1,
+            "visibility": "visible"
+          })
+        })
+    } else {
+      $(".pedidoContainer, .comentariosContainer").animate({
+        "opacity": 0,
+        "visibility": "hidden"
+      }, 300, function () {
+        $(".itemMoreInfo").children().removeClass("fa-caret-up").addClass("fa-caret-down")
+        $(".moreInfoContainer").css({
+          "height": "0"
+        });
+      })
+    }
   });
+
+  let retrieveData = (key, item) => {
+    let estado, 
+     dataFatura = item.dataFatura,
+     faturaSecretaria= "",
+     notaEncomenda =` <th class="cell">${item.notaEncomenda}</th>`,
+     pedidoCredito = "";
+
+    switch (item.estado) {
+      case "Feito":
+        estado = '<span  title="Feito" class="feito fa fa-check"></span>'
+        break;
+      case "Cabimento_pedido":
+        estado = '<span  title="Cabimento Pedido" class="cabimentado fa fa-cart-plus"></span>'
+        break;
+      case "Anulado":
+        estado = '<span  title="Anulado" class="anulado fa fa-ban"></span>'
+        break;
+      case "Pendente":
+        estado = '<span  title="Pendente" class="pendente fa fa-pause"></span>'
+        break;
+      case "Encomendado":
+        estado = '<span  title="Encomendado" class="encomendado fa fa-truck"></span>'
+        break;
+    }
+
+    if(item.dataFatura.length==0 || item.dataFatura=="//" ){
+      dataFatura = "ND"
+    }
+    
+    if(item.faturaSecretaria=="Sim"){
+      faturaSecretaria = "faturaSecretaria"
+    }
+
+    if(item.pedidoCredito=="Sim"){
+      pedidoCredito = "pedidoCredito"
+    }
+
+    if(item.notaEncomenda.length > 30){
+      notaEncomenda =`<th title="${item.notaEncomenda}" class="cell">${item.notaEncomenda.slice(0,30) + "..."}</th>`
+      
+    }
+
+    $("#tabelaEncomendas").append(`
+    <tr id="${key}">
+      <th class="stateIcon estado">
+        ${estado}
+      </th>
+      <th class="cell">${item.data}</th>
+      <th class="cell">${item.remetente}</th>
+      <th class="cell">${item.rubrica}</th>
+      <th class="cell">${item.fornecedor}</th>
+      ${notaEncomenda}
+      <th class="cell">${item.fundo}</th>
+      <th class="cell">${item.cabimentado}</th>
+      <th class="cell">${item.faturado}</th>
+      <th class="cell">${dataFatura}</th>
+      <th class="stateIcon credito">
+        <span title="Acréscimo ao Crédito?" class="fa fa-credit-card ${pedidoCredito}"></span>
+      </th>
+      <th class="stateIcon faturaSecretaria">
+        <span title="Fatura Entregue na Secretaria?"  class="fa fa-file ${faturaSecretaria}"></span>
+      </th>
+      <th title="Editar" class="stateIcon editItem ">
+        <span class="fa fa-edit"></span>
+      </th>
+      <th title="Eliminar" class="stateIcon deleteItem ">
+        <span class="fa fa-times-circle"></span>
+      </th>
+      <th class="stateIcon info itemMoreInfo">
+        <span title="Informação Complementar" class="fa fa-caret-down"></span>
+      </th>
+    </tr>   
+    `);
+
+  }
+
 });

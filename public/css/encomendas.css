@@ -120,6 +120,14 @@ iframe {
       .encomendasWrapper .searchContainer .newListItemBtn:hover {
         background: #c0392b; }
 
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(3600deg);
+    transform: rotate(3600deg); } }
+
 .loader {
   width: 100%;
   height: 100%;
@@ -138,7 +146,17 @@ iframe {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   color: #3367d6; }
+
+.spinner {
+  font-size: 40px;
+  -webkit-animation: rotate 10s linear infinite;
+  animation: rotate 10s linear infinite;
+  margin-bottom: 20px; }
 
 .listContainer {
   width: 100%;

@@ -21,15 +21,11 @@ ref.on("value", (data) => {
 router.get('/getData', (req, res) =>{
   let numElements = req.query.num;
   let length = keys.length;
-  if(numElements){
-
-  }else{
-    res.send({
-      "keys": keys.slice(length-30,length),
-      "data": receivedData.slice(length-30,length)
-    });
-  }
- 
+  console.log(numElements)
+  res.send({
+    "keys": keys.slice(length-(numElements+30),length-numElements),
+    "data": receivedData.slice(length-(numElements+30),length-numElements)
+  });
 });
 
 

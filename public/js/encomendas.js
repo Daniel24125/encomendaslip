@@ -5,7 +5,7 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
-  fetch('/getData')
+  fetch('/getData?num=0')
     .then(response => response.json())
     .then(res => {
       $(".loader").addClass("hideComponent")
@@ -28,7 +28,8 @@ $(document).ready(function () {
         }, 300, function () {
           $(".pedidoContainer, .comentariosContainer").css({
             "opacity": 1,
-            "visibility": "visible"
+            "visibility": "visible",
+            "z-index": 1
           })
         })
     } else {
@@ -36,6 +37,7 @@ $(document).ready(function () {
         "opacity": 0,
         "visibility": "hidden"
       }, 300, function () {
+        $(".pedidoContainer, .comentariosContainer").css("z-index","-1")
         $(".itemMoreInfo").children().removeClass("fa-caret-up").addClass("fa-caret-down")
         $(".moreInfoContainer").css({
           "height": "0"
@@ -43,6 +45,19 @@ $(document).ready(function () {
       })
     }
   });
+
+  $(".loadContent").click(()=>{
+    $(".loadContent, .loadMoreContainer .spinner").toggleClass("hideComponent")
+    fetch(`/getData?num=${allData.length}`)
+    .then(response => response.json())
+    .then(res => {
+      $(".loadContent, .loadMoreContainer .spinner").toggleClass("hideComponent")
+      console.log(res)
+      // allData = res.data.reverse();  
+      // allKeys = res.keys.reverse();
+      // allData.map((item, index)=>retrieveData(allKeys[index], item)) 
+    });
+  })
 
   let retrieveData = (key, item) => {
     let estado, 

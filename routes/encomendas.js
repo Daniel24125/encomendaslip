@@ -19,14 +19,14 @@ ref.on("value", (data) => {
   (err) => console.log(err));
 
 router.get('/getData', (req, res) =>{
-  let numElements = req.query.num;
+  let numElements = parseInt(req.query.num);
   let length = keys.length;
-  console.log(numElements)
+  let sendData = receivedData.slice(length-(numElements+30),length-numElements)
+  let sendKeys = keys.slice(length-(numElements+30),length-numElements)
   res.send({
-    "keys": keys.slice(length-(numElements+30),length-numElements),
-    "data": receivedData.slice(length-(numElements+30),length-numElements)
+    "keys": sendKeys,
+    "data": sendData
   });
 });
-
 
 module.exports = router;

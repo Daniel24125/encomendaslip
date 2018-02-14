@@ -36,12 +36,107 @@
         <div class="newListItemBtn">NOVO REGISTO</div>
       </div>
     </form>
+
     <div class="loader">
       <span class="spinner fa fa-spinner"></span>
       <span>A CARREGAR LISTA...</span>
     </div>
+    <div class="blackBackground hideComponent"></div>
+    <div class="addListItemContainer hideComponent">
+      <div class="formContainer">
+        <div class="newItemHeader">
+          <span>REGISTO DE NOVA ENCOMENDA</span>
+        </div>
+        <div class="newItemIconsContainer">
+          <div class="iconsContainer estadoContainer">
+            <div class="newItemIcon">
+              <span data-estado="Feito" title="Feito" class="notClicked feito fa fa-check"></span>
+            </div>
+            <div class="newItemIcon">
+              <span data-estado="Encomendado" title="Encomendado" class="encomendado fa fa-truck"></span>
+            </div>
+            <div class="newItemIcon">
+              <span data-estado="Cabimento_pedido" title="Cabimento Pedido" class="notClicked cabimentado fa fa-cart-plus"></span>
+            </div>
+            <div class="newItemIcon">
+              <span data-estado="Pendente" title="Pendente" class="notClicked pendente fa fa-pause"></span>
+            </div>
+            <div class="newItemIcon">
+              <span data-estado="Anulado" title="Anulado" class="notClicked anulado fa fa-ban"></span>
+            </div>
+          </div>
+          <div class="iconsContainer configContainer">
+              <div class="newItemIcon">
+                  <span title="Acréscimo ao Crédito?" class="notClicked pedidoCredito fa fa-credit-card"></span>
+                </div>
+                <div class="newItemIcon">
+                  <span title="Fatura Entregue na Secretaria?" class="notClicked faturaSecretaria fa fa-file"></span>
+                </div>
+          </div>
+        </div>
+        <div class="inputContainer">
+          <label for="data">Data</label>
+          <input type="text" name="data" id="data">
+        </div>
+        <div class="inputContainer">
+            <label for="remetente">Remetente</label>
+            <input type="text" name="remetente" id="remetente">
+          </div>
+        <div class="inputContainer">
+          <label for="pedido">Nº de Pedido</label>
+          <input type="text" name="pedido" id="pedido">
+        </div>
+        <div class="inputContainer">
+          <label for="fornecedor">Fornecedor</label>
+          <input type="text" name="fornecedor" id="fornecedor">
+        </div>
+        <div class="inputContainer">
+          <label for="notaEncomenda">Nota de Encomenda</label>
+          <input type="text" name="notaEncomenda" id="notaEncomenda">
+        </div>
+        <div class="inputContainer">
+          <label for="cabimentado">Valor Cabimentado</label>
+          <input type="text" name="cabimentado" id="cabimentado">
+        </div>
+        <div class="inputContainer">
+          <label for="faturado">Valor Faturado</label>
+          <input type="text" name="faturado" id="faturado">
+        </div>
+        <div class="inputContainer">
+          <label for="dataFatura">Data Fatura</label>
+          <input type="text" name="dataFatura" id="dataFatura">
+        </div>
+        <div class="inputContainer fullWidthInput">
+          <label for="notas">Comentários</label>
+          <textarea name="notas" id="notas"></textarea>
+        </div>
+        <div class="inputContainer">
+          <select name="rubrica" id="rubrica">
+            <option value="">Rúbrica</option>
+            <option value="Consumíveis e Reagentes">Consumíveis e Reagentes</option>
+            <option value="Acessórios de Equipamentos">Acessórios de Equipamentos</option>
+            <option value="Equipamentos">Equipamentos</option>
+            <option value="Disseminação Resultados">Disseminação Resultados</option>
+            <option value="Viagens e Estadias">Viagens e Estadias</option>
+            <option value="RH">RH</option>
+            <option value="Prestação de Serviço">Prestação de Serviços</option>
+          </select>
+        </div>
+        <div class="inputContainer">
+          <select name="fundo" id="fundo">
+            <option value="">Fundo</option>
+          </select>
+        </div>
+        <div class="inputContainer fullWidthInput">
+          <div class="submitBtn">
+            <span class="saveNewItem">GUARDAR</span>
+            <span class="cancelNewItem">CANCELAR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="listContainer">
-      
       <div class="moreInfoContainer">
         <div class="moreInfoContent pedidoContainer ">
           <span>Nº DE PEDIDO</span>
@@ -50,13 +145,13 @@
           </div>
         </div>
         <div class="moreInfoContent comentariosContainer ">
-          <span>COMENTÁRIOS</span> 
+          <span>COMENTÁRIOS</span>
           <div class="textContainer">
             <span class="comentariosText"></span>
           </div>
         </div>
       </div>
-      <table  class="listTable">
+      <table class="listTable">
         <tr class="tableHeader">
           <th class="estado"></th>
           <th class="">DATA</th>
@@ -67,7 +162,7 @@
           <th class="">FUNDO</th>
           <th class="">CABIMENTADO</th>
           <th class="">FATURADO</th>
-          <th class="">DATA FATURA</th>   
+          <th class="">DATA FATURA</th>
           <th class="info"></th>
           <th class="credito"></th>
           <th class="faturaSecretaria"></th>
@@ -78,8 +173,10 @@
       </table>
 
       <div class="loadMoreContainer">
+        <div class="loaderContainer">
           <span class="spinner fa fa-spinner hideComponent"></span>
-        <span class="loadContent">CARREGAR MAIS REGISTOS</span> 
+        </div>
+        <span class="loadContent">CARREGAR MAIS REGISTOS</span>
       </div>
     </div>
   </div>

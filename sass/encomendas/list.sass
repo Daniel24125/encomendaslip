@@ -59,44 +59,47 @@
 
   .loadMoreContainer
     width: 100% 
-    text-align: center 
-    padding: 20px 0 
+    // text-align: center 
+    padding: 50px 0
     color: $searchContainer
+    display: flex 
+    flex-direction: column
+    align-items: center
+    justify-content: center
     .loadContent
       cursor: pointer
       &:hover
         color: $searchInput
   
-.editItem
-  color: $editIconColor !important
-  cursor: pointer
-.deleteItem
-  color: $deleteIconColor !important
-  cursor: pointer
+  .editItem
+    color: $editIconColor !important
+    cursor: pointer
+  .deleteItem
+    color: $deleteIconColor !important
+    cursor: pointer
 
-.feito 
-  color: $feitoColor !important
-.pendente 
-  color: $pendenteColor !important
-.cabimentado 
-  color: $cabimentadoColor !important
-.encomendado 
-  color: $encomendadoColor !important
-.anulado 
-  color: $deleteIconColor !important
+  .estado
+    font-size: 16px !important
 
-.estado
-  font-size: 16px !important
+  .itemMoreInfo
+    cursor: pointer !important
+    &:hover 
+      color: $tableText !important
 
-.itemMoreInfo
-  cursor: pointer !important
-  &:hover 
-    color: $tableText !important
-
-.faturaSecretaria 
-  color: $pedidoSecretaria
-.pedidoCredito
-  color: $pedidoCredito
+  .faturaSecretaria 
+    color: $pedidoSecretaria
+  .pedidoCredito
+    color: $pedidoCredito
+  .feito 
+    color: $feitoColor !important
+  .pendente 
+    color: $pendenteColor !important
+  .cabimentado 
+    color: $cabimentadoColor !important
+  .encomendado 
+    color: $encomendadoColor !important
+  .anulado 
+    color: $deleteIconColor !important
 
 .moreInfoContainer
   background: $searchContainer

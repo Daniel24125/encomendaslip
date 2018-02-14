@@ -204,50 +204,51 @@ iframe {
       font-weight: 500; }
   .listContainer .loadMoreContainer {
     width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    color: #3367d6; }
+    padding: 50px 0;
+    color: #3367d6;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
     .listContainer .loadMoreContainer .loadContent {
       cursor: pointer; }
       .listContainer .loadMoreContainer .loadContent:hover {
         color: #2850a7; }
-
-.editItem {
-  color: #f1c40f !important;
-  cursor: pointer; }
-
-.deleteItem {
-  color: #e74c3c !important;
-  cursor: pointer; }
-
-.feito {
-  color: #2ecc71 !important; }
-
-.pendente {
-  color: #f1c40f !important; }
-
-.cabimentado {
-  color: #55efc4 !important; }
-
-.encomendado {
-  color: #7f8c8d !important; }
-
-.anulado {
-  color: #e74c3c !important; }
-
-.estado {
-  font-size: 16px !important; }
-
-.itemMoreInfo {
-  cursor: pointer !important; }
-  .itemMoreInfo:hover {
-    color: #1f1f1f !important; }
-
-.faturaSecretaria {
-  color: #be2edd; }
-
-.pedidoCredito {
-  color: #4834d4; }
+  .listContainer .editItem {
+    color: #f1c40f !important;
+    cursor: pointer; }
+  .listContainer .deleteItem {
+    color: #e74c3c !important;
+    cursor: pointer; }
+  .listContainer .estado {
+    font-size: 16px !important; }
+  .listContainer .itemMoreInfo {
+    cursor: pointer !important; }
+    .listContainer .itemMoreInfo:hover {
+      color: #1f1f1f !important; }
+  .listContainer .faturaSecretaria {
+    color: #be2edd; }
+  .listContainer .pedidoCredito {
+    color: #4834d4; }
+  .listContainer .feito {
+    color: #2ecc71 !important; }
+  .listContainer .pendente {
+    color: #f1c40f !important; }
+  .listContainer .cabimentado {
+    color: #55efc4 !important; }
+  .listContainer .encomendado {
+    color: #7f8c8d !important; }
+  .listContainer .anulado {
+    color: #e74c3c !important; }
 
 .moreInfoContainer {
   background: #3367d6;
@@ -288,3 +289,167 @@ iframe {
     padding: 10px;
     overflow-y: auto;
     font-size: 12px; }
+
+.blackBackground {
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.9;
+  z-index: 100;
+  position: absolute;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease; }
+
+.addListItemContainer {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 200;
+  position: absolute;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease; }
+  .addListItemContainer .formContainer {
+    width: 55%;
+    height: 90%;
+    background: white;
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 10px 30px;
+    overflow-y: auto;
+    position: relative; }
+    .addListItemContainer .formContainer .newItemHeader {
+      width: 100%;
+      background: #3367d6;
+      text-align: center;
+      color: white;
+      padding: 20px 0;
+      z-index: 10;
+      margin-bottom: 30px; }
+    .addListItemContainer .formContainer .newItemIconsContainer {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 50px; }
+      .addListItemContainer .formContainer .newItemIconsContainer .iconsContainer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        font-size: 16px; }
+        .addListItemContainer .formContainer .newItemIconsContainer .iconsContainer .newItemIcon {
+          margin: 10px 0 !important;
+          cursor: pointer !important;
+          text-align: center; }
+        .addListItemContainer .formContainer .newItemIconsContainer .iconsContainer .notClicked {
+          color: #b0b0b0; }
+      .addListItemContainer .formContainer .newItemIconsContainer .estadoContainer {
+        border-bottom: 2px solid #EA2027; }
+      .addListItemContainer .formContainer .newItemIconsContainer .feito {
+        color: #2ecc71; }
+      .addListItemContainer .formContainer .newItemIconsContainer .pendente {
+        color: #f1c40f; }
+      .addListItemContainer .formContainer .newItemIconsContainer .cabimentado {
+        color: #55efc4; }
+      .addListItemContainer .formContainer .newItemIconsContainer .encomendado {
+        color: #7f8c8d; }
+      .addListItemContainer .formContainer .newItemIconsContainer .anulado {
+        color: #e74c3c; }
+      .addListItemContainer .formContainer .newItemIconsContainer .faturaSecretaria {
+        color: #be2edd; }
+      .addListItemContainer .formContainer .newItemIconsContainer .pedidoCredito {
+        color: #4834d4; }
+    .addListItemContainer .formContainer .inputContainer {
+      width: 40%;
+      height: 50px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      margin: 0 20px 20px 0; }
+      .addListItemContainer .formContainer .inputContainer label {
+        -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        transform: translateY(100%);
+        z-index: 1;
+        -webkit-transition: all 200ms ease;
+        -o-transition: all 200ms ease;
+        transition: all 200ms ease;
+        color: #b0b0b0; }
+      .addListItemContainer .formContainer .inputContainer input, .addListItemContainer .formContainer .inputContainer textarea, .addListItemContainer .formContainer .inputContainer select {
+        border: none;
+        border-bottom: 2px solid #b0b0b0;
+        z-index: 2;
+        background: none; }
+        .addListItemContainer .formContainer .inputContainer input:focus, .addListItemContainer .formContainer .inputContainer textarea:focus, .addListItemContainer .formContainer .inputContainer select:focus {
+          outline: none;
+          border-bottom-color: #3367d6; }
+      .addListItemContainer .formContainer .inputContainer select {
+        font-size: 16px; }
+      .addListItemContainer .formContainer .inputContainer textarea {
+        height: 200px; }
+    .addListItemContainer .formContainer .fullWidthInput {
+      width: 100%; }
+      .addListItemContainer .formContainer .fullWidthInput .submitBtn {
+        width: 100%;
+        color: #3367d6;
+        padding: 10px 0;
+        text-align: right;
+        margin-top: 20px; }
+        .addListItemContainer .formContainer .fullWidthInput .submitBtn span {
+          cursor: pointer;
+          margin: 0 10px; }
+        .addListItemContainer .formContainer .fullWidthInput .submitBtn .cancelNewItem {
+          color: #EA2027; }
+    .addListItemContainer .formContainer .inputFocus label {
+      -webkit-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
+      transform: translateY(-10px);
+      color: #3367d6;
+      font-size: 12px; }

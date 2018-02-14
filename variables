@@ -1,0 +1,6 @@
+export API_KEY=AIzaSyB1sCXPO_lunah8ry6OJbiV4xGAzjZQcTA
+export AUTH_DOMAIN=gestao-encomendas.firebaseapp.com
+export DATABASE_URL=https://gestao-encomendas.firebaseio.com
+export PROJECT_ID=gestao-encomendas
+export STORAGE_BUCKET=gestao-encomendas.appspot.com
+export MESSAGING_SENDER_ID=757071903986

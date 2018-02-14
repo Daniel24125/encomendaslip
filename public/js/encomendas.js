@@ -14,6 +14,8 @@ $(document).ready(function () {
       allData.map((item, index)=>retrieveData(allKeys[index], item)) 
     });
 
+  
+  
   $("body").on("click", ".itemMoreInfo", function () {
     moreInfoClicked = !moreInfoClicked;
     let id = $(this).parent().attr("id");
@@ -47,17 +49,102 @@ $(document).ready(function () {
   });
 
   $(".loadContent").click(()=>{
+    console.log(allData.length)
     $(".loadContent, .loadMoreContainer .spinner").toggleClass("hideComponent")
     fetch(`/getData?num=${allData.length}`)
     .then(response => response.json())
     .then(res => {
+      let newData = res.data.reverse();
+      let newKeys = res.keys.reverse();
+      
+      newData.map((item, index)=>{
+        retrieveData(newKeys[index], item);
+        allData.push(item);  
+        allKeys.push(newKeys[index]);
+      })     
       $(".loadContent, .loadMoreContainer .spinner").toggleClass("hideComponent")
-      console.log(res)
-      // allData = res.data.reverse();  
-      // allKeys = res.keys.reverse();
-      // allData.map((item, index)=>retrieveData(allKeys[index], item)) 
     });
   })
+
+  $(".inputContainer input, .inputContainer textarea").click(function(){
+    $(this).parent().addClass("inputFocus")
+  });
+
+  $(".inputContainer input, .inputContainer textarea").focusout(function(){
+    if($(this).val()==""){
+      $(this).parent().removeClass("inputFocus")
+    }
+  });
+
+    $(".estadoContainer .newItemIcon").click(function(){
+      $(".estadoContainer .newItemIcon").children().addClass("notClicked")
+      $(this).children().toggleClass("notClicked")
+    });
+
+    $(".configContainer .newItemIcon").click(function(){
+      $(this).children().toggleClass("notClicked")
+    });
+
+    $(".saveNewItem").click(function(){
+      let estado, newCredito="Não", newSecretaria="Não";
+      if($(".pedidoCredito").hasClass("notClicked") ==false){
+        newCredito = "Sim"
+      }
+
+      if($(".faturaSecretaria").hasClass("notClicked") ==false){
+        newSecretaria = "Sim"
+      }
+
+      $(".estadoContainer .newItemIcon").each(function(){
+        if($(this).children().hasClass("notClicked")==false){
+          estado = $(this).children().data("estado")
+        }
+      })
+    var saveValues = {
+      "data": $("#data").val(),
+      "pedidoAno": parseInt($("#data").val().substring(6,10)),
+      "pedidoMes":  parseInt($("#data").val().substring(3,5)),
+      "pedido": $("#pedido").val(),
+      "remetente": $("#remetente").val(),
+      "rubrica": $("#rubrica").val(),
+      "fornecedor": $("#fornecedor").val(),
+      "notaEncomenda": $("#notaEncomenda").val(),
+      "fundo": $("#fundo").val(),
+      "cabimentado":  parseFloat($("#cabimentado").val()),
+      "dif":  $("#cabimentado").val() -  $("#faturado").val(),
+      "faturado": parseFloat($("#faturado").val()),
+      "estado": estado,
+      "notas":  $("#notas").val(),
+      "pedidoCredito":newCredito,
+      "dataFatura": $("#dataFatura").val(),
+      "faturaAno":parseInt( $("#dataFatura").val().substring(6,10)),
+      "faturaMes": parseInt($("#dataFatura").val().substring(3,4)),
+      "faturaSecretaria": newSecretaria
+    };
+    console.log(saveValues)
+
+    });
+
+    $(".cancelNewItem").click(function(){
+      $(".addListItemContainer, .blackBackground").addClass("hideComponent");
+    });
+
+    $(".newListItemBtn").click(function(){
+      $(".addListItemContainer, .blackBackground").removeClass("hideComponent");
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; 
+      var yyyy = today.getFullYear();
+      if(dd<10) {
+        dd = '0'+dd
+      } 
+      if(mm<10) {
+          mm = '0'+mm
+      } 
+      today =  dd+ '/' + mm + '/' + yyyy;
+      $("#data").val(today).parent().addClass("inputFocus")
+    });
+    
 
   let retrieveData = (key, item) => {
     let estado, 

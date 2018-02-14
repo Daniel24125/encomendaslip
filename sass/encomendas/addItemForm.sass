@@ -1,0 +1,117 @@
+.blackBackground
+  width: 100% 
+  height: 100% 
+  background: black 
+  opacity: 0.9
+  z-index: 100
+  position: absolute
+  transition: all 300ms ease
+
+.addListItemContainer
+  width: 100% 
+  height: 100% 
+  display: flex
+  align-items: center 
+  justify-content: center
+  z-index: 200 
+  position: absolute
+  transition: all 300ms ease
+  .formContainer
+    width: 55%
+    height: 90% 
+    background: white 
+    @include cardStyle 
+    display: flex 
+    flex-direction: row
+    justify-content: flex-start  
+    flex-wrap: wrap
+    padding: 10px 30px
+    overflow-y: auto
+    position: relative
+    .newItemHeader
+      width: 100% 
+      background: $searchContainer
+      text-align: center
+      color: white
+      padding: 20px 0
+      z-index: 10
+      margin-bottom: 30px
+    .newItemIconsContainer
+      position: absolute
+      right: 0 
+      @include centerVer
+      display: flex 
+      flex-direction: column
+      align-items: center 
+      width: 50px 
+      .iconsContainer 
+        display: flex 
+        flex-direction: column
+        font-size: 16px
+        .newItemIcon 
+          margin: 10px 0 !important
+          cursor: pointer !important
+          text-align: center
+        .notClicked
+          color: $tableHeaderText
+      .estadoContainer
+         border-bottom: 2px solid $newItemColor
+      .feito 
+       color: $feitoColor 
+      .pendente 
+        color: $pendenteColor 
+      .cabimentado 
+        color: $cabimentadoColor 
+      .encomendado 
+        color: $encomendadoColor 
+      .anulado 
+        color: $deleteIconColor 
+      .faturaSecretaria 
+        color: $pedidoSecretaria
+      .pedidoCredito
+        color: $pedidoCredito
+    .inputContainer 
+      width: 40% 
+      height: 50px
+      display: flex 
+      flex-direction: column
+      justify-content: flex-end
+      flex-wrap: nowrap
+      margin: 0 20px 20px 0
+      label 
+        transform: translateY(100%)
+        z-index: 1
+        transition: all 200ms ease
+        color: $tableHeaderText  
+      input, textarea, select 
+        border: none 
+        border-bottom: 2px solid $tableHeaderText  
+        z-index: 2
+        background: none
+        &:focus
+          outline: none
+          border-bottom-color: $searchContainer
+      select  
+        // max-width: 200px
+        font-size: 16px
+      textarea 
+        height: 200px 
+    .fullWidthInput 
+      width: 100%
+      .submitBtn 
+        width: 100% 
+        color: $searchContainer
+        padding: 10px 0 
+        text-align: right
+        margin-top: 20px
+        span 
+          cursor: pointer 
+          margin: 0 10px
+        .cancelNewItem
+          color: $newItemColor
+
+    .inputFocus 
+      label
+        transform: translateY(-10px)
+        color: $searchContainer
+        font-size: 12px

@@ -48,6 +48,125 @@ iframe {
   width: 100%;
   height: 100vh; }
 
+.resultMessageContainer {
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease; }
+  .resultMessageContainer .resultIconContainer {
+    width: 50px;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 20px; }
+  .resultMessageContainer .resultMessageContent {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 50px 0 20px;
+    color: white;
+    font-size: 14px; }
+
+.success {
+  background: #10ac84;
+  border-bottom: 2px solid #218c74; }
+  .success .resultIconContainer {
+    background: #33d9b2;
+    color: #10ac84; }
+
+.error {
+  background: #c0392b;
+  border-bottom: 2px solid #b33939; }
+  .error .resultIconContainer {
+    background: #e74c3c;
+    color: #c0392b; }
+
+.hideSlide {
+  top: -300px; }
+
+.confirmDeleteContainer {
+  width: 350px;
+  background: white;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease; }
+  .confirmDeleteContainer .messageContainer {
+    width: 100%;
+    height: 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 16px;
+    color: #6c6c6c; }
+    .confirmDeleteContainer .messageContainer span {
+      margin: 20px; }
+  .confirmDeleteContainer .footerContainer {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 50px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #3367d6; }
+    .confirmDeleteContainer .footerContainer span {
+      cursor: pointer;
+      margin-right: 20px; }
+    .confirmDeleteContainer .footerContainer .confirmDelete:hover {
+      color: #2ecc71; }
+    .confirmDeleteContainer .footerContainer .cancelDelete:hover {
+      color: #e74c3c; }
+
 .drawerHeaderContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -190,3 +309,152 @@ iframe {
       font-size: 14px; }
     .optionsContainer .navItemContainer .navDesc {
       font-size: 12px; }
+
+.listaFornecedoresContainer {
+  width: 200px;
+  height: 100%;
+  background: #30336b;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  z-index: 500;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  left: -200px; }
+  .listaFornecedoresContainer .fornecedoresHeader {
+    width: 100%;
+    height: 50px;
+    background: #30336b; }
+    .listaFornecedoresContainer .fornecedoresHeader .closeFornecedores {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 12px; }
+    .listaFornecedoresContainer .fornecedoresHeader .addFornecedores {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 12px; }
+      .listaFornecedoresContainer .fornecedoresHeader .addFornecedores:hover {
+        color: #55efc4; }
+  .listaFornecedoresContainer .listaFornecedores {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden; }
+    .listaFornecedoresContainer .listaFornecedores::-webkit-scrollbar-track {
+      background-color: none; }
+    .listaFornecedoresContainer .listaFornecedores::-webkit-scrollbar {
+      width: 5px;
+      background-color: #30336b; }
+    .listaFornecedoresContainer .listaFornecedores::-webkit-scrollbar-thumb {
+      background-color: #130f40; }
+    .listaFornecedoresContainer .listaFornecedores .fornecedor {
+      width: 100%;
+      padding: 10px;
+      font-size: 12px;
+      color: white;
+      cursor: pointer;
+      position: relative; }
+      .listaFornecedoresContainer .listaFornecedores .fornecedor:hover {
+        background: #130f40; }
+      .listaFornecedoresContainer .listaFornecedores .fornecedor .deleteFornecedor {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%); }
+        .listaFornecedoresContainer .listaFornecedores .fornecedor .deleteFornecedor:hover {
+          color: #e74c3c; }
+    .listaFornecedoresContainer .listaFornecedores .newFornecedorForm {
+      width: 100%;
+      padding: 10px;
+      font-size: 12px;
+      color: white;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row; }
+      .listaFornecedoresContainer .listaFornecedores .newFornecedorForm .inputFornecedorContainer {
+        width: 75%; }
+        .listaFornecedoresContainer .listaFornecedores .newFornecedorForm .inputFornecedorContainer input {
+          width: 90%;
+          background: none;
+          outline: none;
+          border: none;
+          border-bottom: 2px solid #130f40;
+          color: white; }
+      .listaFornecedoresContainer .listaFornecedores .newFornecedorForm .btnContainer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center; }
+        .listaFornecedoresContainer .listaFornecedores .newFornecedorForm .btnContainer .btn {
+          cursor: pointer;
+          padding: 0 3px; }
+  .listaFornecedoresContainer .fornecedorCardContainer {
+    width: 300px;
+    background: #130f40;
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    position: absolute;
+    height: 100px;
+    left: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    left: -300px;
+    z-index: -1; }
+    .listaFornecedoresContainer .fornecedorCardContainer .newFornecedorInput {
+      background: none;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid #30336b;
+      color: white; }
+    .listaFornecedoresContainer .fornecedorCardContainer .contactsContainer {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      color: white;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      padding: 0 20px; }
+      .listaFornecedoresContainer .fornecedorCardContainer .contactsContainer .fornecedorInfo {
+        padding: 2px 20px;
+        font-size: 10px; }
+        .listaFornecedoresContainer .fornecedorCardContainer .contactsContainer .fornecedorInfo:first-child {
+          font-size: 14px;
+          padding-left: 3px; }
+    .listaFornecedoresContainer .fornecedorCardContainer .closeCardContainer {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+      font-size: 12px;
+      cursor: pointer; }

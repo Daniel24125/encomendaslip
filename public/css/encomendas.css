@@ -198,7 +198,7 @@ iframe {
       background: #2850a7;
       color: white;
       border: none;
-      margin-right: 10px; }
+      outline: none; }
       .encomendasWrapper .searchContainer input::-webkit-input-placeholder {
         color: #ecf0f1; }
       .encomendasWrapper .searchContainer input:-ms-input-placeholder {
@@ -224,9 +224,13 @@ iframe {
       -webkit-box-pack: center;
       -ms-flex-pack: center;
       justify-content: center;
-      cursor: pointer;
       background: #2850a7;
-      border-radius: 3px; }
+      border-radius: 3px;
+      -webkit-transform: translateX(-10px);
+      -ms-transform: translateX(-10px);
+      transform: translateX(-10px); }
+      .encomendasWrapper .searchContainer .submitButton .cancelSearch {
+        cursor: pointer; }
     .encomendasWrapper .searchContainer .newListItemBtn {
       padding: 10px 15px;
       border-radius: 5px;

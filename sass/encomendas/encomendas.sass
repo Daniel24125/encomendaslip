@@ -16,7 +16,7 @@
       background: $searchInput
       color: white 
       border: none
-      margin-right: 10px 
+      outline: none
       &::placeholder 
         color: $acitveColor
     select 
@@ -30,9 +30,12 @@
       display: flex 
       align-items: center 
       justify-content: center
-      cursor: pointer
       background: $searchInput
       border-radius: 3px
+      transform: translateX(-10px)
+
+      .cancelSearch
+        cursor: pointer
     .newListItemBtn
       padding: 10px 15px
       border-radius: 5px 

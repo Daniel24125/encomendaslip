@@ -33,7 +33,6 @@ router.get('/getData', (req, res) => {
 
 // SEARCH ORDER
 router.post("/searchOrder", function (req, res) {
-  console.log(req.body.search, req.body.field);
   ref.orderByChild(req.body.field).startAt(req.body.search).endAt(req.body.search + "\uf8ff").once("value", (snap) => {
     var queryData = snap.val();
     if (queryData != null) {

@@ -7,9 +7,24 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
-  $(".submitButton").click(()=>{
-    searchTerm();
-  })
+  $("body").on("click", ".cancelSearch", function(){
+    $(".loader").removeClass("hideComponent")
+    $("#tabelaEncomendas").html("");
+    $(".loadMoreContainer").removeClass("hideComponent")
+    $(".submitButton").html(`
+      <div class="fa fa-search"></div>
+    `);
+    $("#searchTerm").val("")
+    fetch('/getData?num=0')
+    .then(response => response.json())
+    .then(res => {
+      $(".loader").addClass("hideComponent")
+      allData = res.data.reverse();
+      allKeys = res.keys.reverse();
+      allData.map((item, index) => retrieveData(allKeys[index], item))
+    });
+
+  });
 
   fetch('/getData?num=0')
     .then(response => response.json())
@@ -111,9 +126,14 @@ $(document).ready(function () {
 
   
   //REGISTO DE NOVA ENCOMENDA
-  $(".showFornecedoresListBtn").click(()=>{
+  $(".showFornecedoresListBtn").click((e)=>{
     $(".fornecedoresList").removeClass("hideComponent");
+    e.stopPropagation()
   });
+
+  $(".addListItemContainer").click(function(){
+    $(".fornecedoresList").addClass("hideComponent");
+  })
 
   $("body").on("click", ".fornecedor", function(){
     let selectedFornecedor = $(this).html()
@@ -477,32 +497,36 @@ $(document).ready(function () {
 
 
   let searchTerm = ()=>{
-    $(".loader").removeClass("hideComponent")
-    fetch('/searchOrder', {
-      method: 'post',
-      body: JSON.stringify({
-        field: $("#searchTerm").val(),
-        search:$("#searchParameter").val()
-      }),
-      headers: {
-        'content-type': 'application/json'
-      },
-      }).then(function(response) {
-        return response.json();
-      }).then(function(data) {
-        $(".loader").addClass("hideComponent")
-        if(data.error){
-          showErrorMessage(data.msg)
-        }else{
-          $("#tabelaEncomendas").html("")
-          $(".submitButton").html(`
-            <div class="cancelSearch fa fa-times"></div>
-          `);
-
-          allData = res.data.reverse();
-          allKeys = res.keys.reverse();
-          allData.map((item, index) => retrieveData(allKeys[index], item))
-        }
-      });
+    if($("#searchTerm").val() == ""){
+      showErrorMessage("Por favor insira um termo para pesquisar")
+    }else{
+      $(".loader").removeClass("hideComponent")
+      fetch('/searchOrder', {
+        method: 'post',
+        body: JSON.stringify({
+          field: $("#searchParameter").val(),
+          search:$("#searchTerm").val()
+        }),
+        headers: {
+          'content-type': 'application/json'
+        },
+        }).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          $(".loader").addClass("hideComponent")
+          if(data.error){
+            showErrorMessage(data.msg)
+          }else{
+            $("#tabelaEncomendas").html("");
+            $(".loadMoreContainer").addClass("hideComponent")
+            $(".submitButton").html(`
+              <div class="cancelSearch fa fa-times"></div>
+            `);
+            allData = data.searchData.reverse();
+            allKeys = data.keys.reverse();
+            allData.map((item, index) => retrieveData(allKeys[index], item))
+          }
+        });
+    }
   }
 });

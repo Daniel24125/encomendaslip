@@ -1,9 +1,15 @@
 $(document).ready(function () {
   let moreInfoClicked = false;
-  let allData, allKeys;
+  let allData, allKeys, fornecedoresNames;
+
   $("#searchForm").submit((e) => {
+    searchTerm();
     e.preventDefault();
   });
+
+  $(".submitButton").click(()=>{
+    searchTerm();
+  })
 
   fetch('/getData?num=0')
     .then(response => response.json())
@@ -22,7 +28,17 @@ $(document).ready(function () {
           <option value="${res[i]}">${res[i]}</option>
           `)
         }
-       
+      });
+
+      fetch('/getFornecedores')
+      .then(response => response.json())
+      .then(res => {
+        fornecedoresNames = Object.keys(res)
+        fornecedoresNames.map(item=>{
+          $(".fornecedoresList").append(`
+          <div class="fornecedor">${item}</div>
+          `)
+        });
       });
 
   $("body").on("click", ".itemMoreInfo", function () {
@@ -93,18 +109,31 @@ $(document).ready(function () {
     $(this).children().toggleClass("notClicked")
   });
 
+  
   //REGISTO DE NOVA ENCOMENDA
+  $(".showFornecedoresListBtn").click(()=>{
+    $(".fornecedoresList").removeClass("hideComponent");
+  });
+
+  $("body").on("click", ".fornecedor", function(){
+    let selectedFornecedor = $(this).html()
+    $("#fornecedor").val(selectedFornecedor).parent().addClass("inputFocus")
+    $(".fornecedoresList").addClass("hideComponent");
+  });
+
+  let editItem;
+  let orderId; 
   $(".saveNewItem").click(function () {
     let estado, newCredito = "Não",
       newSecretaria = "Não";
+
     if ($(".pedidoCredito").hasClass("notClicked") == false) {
       newCredito = "Sim"
     }
 
-    if ($(".faturaSecretaria").hasClass("notClicked") == false) {
+    if ($(".newFaturaSecretaria").hasClass("notClicked") == false) {
       newSecretaria = "Sim"
     }
-
     $(".estadoContainer .newItemIcon").each(function () {
       if ($(this).children().hasClass("notClicked") == false) {
         estado = $(this).children().data("estado")
@@ -134,26 +163,51 @@ $(document).ready(function () {
       "faturaMes": parseInt($("#dataFatura").val().substring(3, 5)),
       "faturaSecretaria": newSecretaria
     };
-    fetch('/addNew', {
-      method: 'post',
-      body: JSON.stringify(saveValues),
-      headers: {
-        'content-type': 'application/json'
-      },
-      }).then(function(response) {
-        return response.json();
-      }).then(function(data) {
-        console.log(data)
-      });
 
+    if(editItem==false){
+      fetch('/addNew', {
+        method: 'post',
+        body: JSON.stringify(saveValues),
+        headers: {
+          'content-type': 'application/json'
+        },
+        }).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          allData.unshift(data.newData.data);
+          allKeys.unshift(data.newData.key)
+          retrieveData(data.newData.key, data.newData.data, true);
+          $(".addListItemContainer, .blackBackground").addClass("hideComponent");
+          showSuccessMessage(data.msg)
+        });
+    }else{
+      fetch('/editOrder', {
+        method: 'post',
+        body: JSON.stringify({
+          id: orderId,
+          editData: saveValues
+        }),
+        headers: {
+          'content-type': 'application/json'
+        },
+        }).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          $(".addListItemContainer, .blackBackground").addClass("hideComponent");
+          showSuccessMessage(data.msg);
+          let index = allKeys.indexOf(orderId);
+          updateItem(orderId, data.newData, index)
+        });
+    }
+   
   });
 
-
-  $(".cancelNewItem").click(function () {
+    $(".cancelNewItem").click(function () {
     $(".addListItemContainer, .blackBackground").addClass("hideComponent");
   });
 
   $(".newListItemBtn").click(function () {
+    editItem = false;
     $(".addListItemContainer, .blackBackground").removeClass("hideComponent");
     var today = new Date();
     var dd = today.getDate();
@@ -169,16 +223,149 @@ $(document).ready(function () {
     $("#data").val(today).parent().addClass("inputFocus")
   });
 
+  
+  $("body").on("click", ".deleteItem", function(){
+    orderId = $(this).parent().attr("id");
+    $(".confirmDeleteContainer, .blackBackground").removeClass("hideComponent");
+  });
+
+  $(".confirmDelete").click(function(){
+    fetch('/removeOrder', {
+      method: 'delete',
+      body: JSON.stringify({id:orderId}),
+      headers: {
+        'content-type': 'application/json'
+      },
+      }).then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        $(`#${orderId}`).remove()
+        showSuccessMessage(data.msg);
+        $(".confirmDeleteContainer, .blackBackground").addClass("hideComponent");
+      });
+  });
+
+  $(".cancelDelete").click(()=>{
+    $(".confirmDeleteContainer, .blackBackground").addClass("hideComponent");
+  });
+
+  $("body").on("click", ".editItem", function(){
+    editItem = true;
+    orderId = $(this).parent().attr("id");
+    let index = allKeys.indexOf(orderId);
+    $(".pedidoCredito").addClass("notClicked");
+    $(".newFaturaSecretaria").addClass("notClicked");
+
+    $("#data").val(allData[index].data);
+    $("#remetente").val(allData[index].remetente);
+    $("#pedido").val(allData[index].pedido);
+    $("#fornecedor").val(allData[index].fornecedor);
+    $("#notaEncomenda").val(allData[index].notaEncomenda);
+    $("#cabimentado").val(allData[index].cabimentado);
+    $("#faturado").val(allData[index].faturado);
+    $("#dataFatura").val(allData[index].dataFatura);
+    $("#notas").val(allData[index].notas);
+    $("#rubrica").val(allData[index].rubrica);
+    $("#fundo").val(allData[index].fundo);
+
+    $(".newItemIcon").children().addClass("notClicked");
+    $(`#${allData[index].estado}`).removeClass("notClicked")
+    if(allData[index].pedidoCredito=="Sim"){
+      $(".pedidoCredito").removeClass("notClicked");
+    }
+    if(allData[index].faturaSecretaria=="Sim"){
+      $(".newFaturaSecretaria").removeClass("notClicked");
+    }
+    $(".inputContainer").addClass("inputFocus");
+    $(".addListItemContainer, .blackBackground").removeClass("hideComponent");
+  });
+
+
+
+  // FUNCTIONS-------------------------------------
+
+  let updateItem = (id, item, index)=>{
+    allData[index] = item;
+    let estado,
+    dataFatura = item.dataFatura,
+    notaEncomenda = item.notaEncomenda;
+  
+  switch (item.estado) {
+    case "Feito":
+      estado = '<span  title="Feito" class="feito fa fa-check"></span>'
+      break;
+    case "Cabimento_pedido":
+      estado = '<span  title="Cabimento Pedido" class="cabimentado fa fa-cart-plus"></span>'
+      break;
+    case "Anulado":
+      estado = '<span  title="Anulado" class="anulado fa fa-ban"></span>'
+      break;
+    case "Pendente":
+      estado = '<span  title="Pendente" class="pendente fa fa-pause"></span>'
+      break;
+    case "Encomendado":
+      estado = '<span  title="Encomendado" class="encomendado fa fa-truck"></span>'
+      break;
+  }
+
+  if (item.dataFatura.length == 0 || item.dataFatura == "//") {
+    dataFatura = "ND"
+  }
+
+  if (item.faturaSecretaria == "Sim") {
+    $(`#${orderId} .faturaSecretaria `).children().addClass("faturaSecretaria")
+  }else{
+    $(`#${orderId} .faturaSecretaria `).children().removeClass("faturaSecretaria")
+  }
+
+  if (item.pedidoCredito == "Sim") {
+    $(`#${orderId} .credito `).children().addClass("pedidoCredito")
+  }else{
+    $(`#${orderId} .credito `).children().removeClass("pedidoCredito")
+  }
+
+  if (item.notaEncomenda.length > 30) {
+    notaEncomenda = item.notaEncomenda.slice(0,30) + "..."
+  }
+
+  let updatedItem = [item.data, item.remetente, item.rubrica, item.fornecedor, item.notaEncomenda, item.fundo, item.cabimentado, item.faturado, item.dataFatura]
+
+  $(`#${orderId} .estado`).html(estado)
+  $(`#${orderId}`).children(".cell").each(function(i){
+    $(this).html(updatedItem[i])
+  });
+  
+  }
+
   let formatNumber = (num) => {
     let formatedNum = num
     if (num.indexOf(",") != -1) {
       formatedNum = num.replace(",", ".")
+    }else if(formatedNum == ""){
+      formatedNum = 0
     }
     return parseFloat(formatedNum)
   }
 
+  let showSuccessMessage = msg => {
+    $(".resultIcon").removeClass("fa-times").addClass("fa-check");
+    $(".resultMessageContent .message").html(msg)
+    $(".resultMessageContainer").addClass("success").removeClass("hideSlide");
+    setTimeout(() => {
+      $(".resultMessageContainer").addClass("hideSlide")
+    }, 3000)
+  }
 
-  let retrieveData = (key, item) => {
+  let showErrorMessage = msg => {
+    $(".resultIcon").removeClass("fa-check").addClass("fa-times");
+    $(".resultMessageContent .message").html(msg)
+    $(".resultMessageContainer").addClass("error").removeClass("hideSlide");
+    setTimeout(() => {
+      $(".resultMessageContainer").addClass("hideSlide")
+    }, 3000)
+  }
+
+  let retrieveData = (key, item, addNew) => {
     let estado,
       dataFatura = item.dataFatura,
       faturaSecretaria = "",
@@ -220,7 +407,9 @@ $(document).ready(function () {
 
     }
 
-    $("#tabelaEncomendas").append(`
+
+    if(addNew){
+      $("#tabelaEncomendas").prepend(`
     <tr id="${key}">
       <th class="stateIcon estado">
         ${estado}
@@ -251,7 +440,69 @@ $(document).ready(function () {
       </th>
     </tr>   
     `);
-
+    }else{
+      $("#tabelaEncomendas").append(`
+      <tr id="${key}">
+        <th class="stateIcon estado">
+          ${estado}
+        </th>
+        <th class="cell">${item.data}</th>
+        <th class="cell">${item.remetente}</th>
+        <th class="cell">${item.rubrica}</th>
+        <th class="cell">${item.fornecedor}</th>
+        ${notaEncomenda}
+        <th class="cell">${item.fundo}</th>
+        <th class="cell">${item.cabimentado}</th>
+        <th class="cell">${item.faturado}</th>
+        <th class="cell">${dataFatura}</th>
+        <th class="stateIcon credito">
+          <span title="Acréscimo ao Crédito?" class="fa fa-credit-card ${pedidoCredito}"></span>
+        </th>
+        <th class="stateIcon faturaSecretaria">
+          <span title="Fatura Entregue na Secretaria?"  class="fa fa-file ${faturaSecretaria}"></span>
+        </th>
+        <th title="Editar" class="stateIcon editItem ">
+          <span class="fa fa-edit"></span>
+        </th>
+        <th title="Eliminar" class="stateIcon deleteItem ">
+          <span class="fa fa-times-circle"></span>
+        </th>
+        <th class="stateIcon info itemMoreInfo">
+          <span title="Informação Complementar" class="fa fa-caret-down"></span>
+        </th>
+      </tr>   
+      `);
+    }
   }
 
+
+  let searchTerm = ()=>{
+    $(".loader").removeClass("hideComponent")
+    fetch('/searchOrder', {
+      method: 'post',
+      body: JSON.stringify({
+        field: $("#searchTerm").val(),
+        search:$("#searchParameter").val()
+      }),
+      headers: {
+        'content-type': 'application/json'
+      },
+      }).then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        $(".loader").addClass("hideComponent")
+        if(data.error){
+          showErrorMessage(data.msg)
+        }else{
+          $("#tabelaEncomendas").html("")
+          $(".submitButton").html(`
+            <div class="cancelSearch fa fa-times"></div>
+          `);
+
+          allData = res.data.reverse();
+          allKeys = res.keys.reverse();
+          allData.map((item, index) => retrieveData(allKeys[index], item))
+        }
+      });
+  }
 });

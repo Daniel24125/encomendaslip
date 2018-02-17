@@ -42,6 +42,26 @@
       <span>A CARREGAR LISTA...</span>
     </div>
     <div class="blackBackground hideComponent"></div>
+
+    <div class="hideSlide resultMessageContainer">
+      <div class="resultIconContainer">
+          <span class="resultIcon fa"></span>
+      </div>
+      <div class="resultMessageContent">          
+         <span class="message"></span>
+      </div>
+    </div>
+
+    <div class="confirmDeleteContainer hideComponent">
+      <div class="messageContainer">
+        <span>Eliminar Encomenda?</span>
+      </div>
+      <div class="footerContainer">
+        <span class="confirmDelete">SIM</span>
+        <span class="cancelDelete">NÃO</span>
+      </div>
+    </div>
+
     <div class="addListItemContainer hideComponent">
       <div class="formContainer">
         <div class="newItemHeader">
@@ -50,19 +70,19 @@
         <div class="newItemIconsContainer">
           <div class="iconsContainer estadoContainer">
             <div class="newItemIcon">
-              <span data-estado="Feito" title="Feito" class="notClicked feito fa fa-check"></span>
+              <span id="Feito" data-estado="Feito" title="Feito" class="notClicked feito fa fa-check"></span>
             </div>
             <div class="newItemIcon">
-              <span data-estado="Encomendado" title="Encomendado" class="encomendado fa fa-truck"></span>
+              <span id="Encomendado" data-estado="Encomendado" title="Encomendado" class="encomendado fa fa-truck"></span>
             </div>
             <div class="newItemIcon">
-              <span data-estado="Cabimento_pedido" title="Cabimento Pedido" class="notClicked cabimentado fa fa-cart-plus"></span>
+              <span id="Cabimento_pedido" data-estado="Cabimento_pedido" title="Cabimento Pedido" class="notClicked cabimentado fa fa-cart-plus"></span>
             </div>
             <div class="newItemIcon">
-              <span data-estado="Pendente" title="Pendente" class="notClicked pendente fa fa-pause"></span>
+              <span id="Pendente" data-estado="Pendente" title="Pendente" class="notClicked pendente fa fa-pause"></span>
             </div>
             <div class="newItemIcon">
-              <span data-estado="Anulado" title="Anulado" class="notClicked anulado fa fa-ban"></span>
+              <span id="Anulado" data-estado="Anulado" title="Anulado" class="notClicked anulado fa fa-ban"></span>
             </div>
           </div>
           <div class="iconsContainer configContainer">
@@ -70,7 +90,7 @@
                   <span title="Acréscimo ao Crédito?" class="notClicked pedidoCredito fa fa-credit-card"></span>
                 </div>
                 <div class="newItemIcon">
-                  <span title="Fatura Entregue na Secretaria?" class="notClicked faturaSecretaria fa fa-file"></span>
+                  <span title="Fatura Entregue na Secretaria?" class="notClicked newFaturaSecretaria fa fa-file"></span>
                 </div>
           </div>
         </div>
@@ -89,6 +109,13 @@
         <div class="inputContainer">
           <label for="fornecedor">Fornecedor</label>
           <input type="text" name="fornecedor" id="fornecedor">
+          <div class="fornecedoresListContainer">
+            <div class="showFornecedoresListBtn">
+              <span class="fa fa-list"></span>
+            </div>
+            <div class="fornecedoresList hideComponent">
+            </div>
+          </div>
         </div>
         <div class="inputContainer">
           <label for="notaEncomenda">Nota de Encomenda</label>

@@ -32,7 +32,8 @@ a {
 
 .hideComponent {
   visibility: hidden;
-  opacity: 0; }
+  opacity: 0;
+  z-index: -1; }
 
 .blackBackground {
   background: black;
@@ -128,7 +129,8 @@ iframe {
   flex-direction: column;
   -webkit-transition: all 300ms ease;
   -o-transition: all 300ms ease;
-  transition: all 300ms ease; }
+  transition: all 300ms ease;
+  z-index: 1000; }
   .confirmDeleteContainer .messageContainer {
     width: 100%;
     height: 100px;

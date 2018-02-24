@@ -31,8 +31,8 @@ router.get("/getMaterialList", (req,res)=>{
 router.post("/newListItem", function(req,res){
   var newID = materialListRef.push(req.body);
   res.send({
-    newData : Req.body, 
-    key: newID
+    newData : req.body, 
+    key: newID.key
   });
 });
 

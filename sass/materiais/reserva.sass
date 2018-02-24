@@ -1,22 +1,22 @@
 .wrapperContainer 
   width: 100%
-  height: calc(100% - 50px)
+  height: 100vh
   background: #f5f7f8
   position: relative
   top: -10px
 
 
 .contentContainer 
-  width: 80%
+  width: 90%
   height: 90%
   background: white
-  border-radius: 5px
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  @include cardStyle
   position: relative
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
   overflow-y: auto
+  
 
 
 .contentContainer::-webkit-scrollbar-track 
@@ -54,6 +54,8 @@ table
   padding: 10px 20px
   border-top: 1px solid #e6e6e6
   border-bottom: 1px solid #e6e6e6
+  font-size: 12px 
+  
 
 
 .addContainer 
@@ -70,8 +72,8 @@ table
 
 .tableHeader span 
   font-weight: 800
-  font-size: 12px
-
+  font-size: 13px
+  
 
 .addItemBtnContainer 
   width: 40px
@@ -82,19 +84,17 @@ table
   cursor: pointer
   border-radius: 100%
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
-
-
-.addItemBtnContainer span 
-  position: absolute
-  top: 50%
-  left: 50%
-  transform: translate(-50%, -50%)
+  display: flex 
+  justify-content: center 
+  align-items: center  
 
 
 .item th, .newItem th
   padding: 10px 20px
   border-bottom: 1px solid #e6e6e6
-  color: #1f1f1f
+  font-size: 13px 
+  color: $tableText
+  font-weight: 400 
 
 
 .listBtn 
@@ -187,6 +187,7 @@ table
   cursor: pointer
   transition: all 100ms ease
   font-weight: bold !important
+  font-size: 14px
 
 
 .confirm:hover

@@ -11,7 +11,7 @@ $(document).ready(() => {
             allData.map((item, index) => {
                 $(".listTableContainer table .materialListContainer").append(`
                     <tr id="${allKeys[index]}" class="item">
-                        <th class="text-center"><span class="listBtn listEdit fa fa-pencil"></span></th>
+                        <th class="text-center"><span class="listBtn listEdit fa fa-edit"></span></th>
                         <th> <span>${item.name}</span> </th>
                         <th> <span>${item.qtd}</span> </th>
                         <th> <span>${item.fornecedor}</span> </th>
@@ -28,7 +28,7 @@ $(document).ready(() => {
         if (clickable) {
             $(".listTableContainer table .materialListContainer").append(`
             <tr class="newItem">
-            <th class="text-center"><span class="listBtn listSave fa fa-floppy-o"></span></th>
+            <th class="text-center"><span class="listBtn listSave fa fa-save"></span></th>
             <th> <span><input class="name" type="text"></span> </th>
             <th> <span><input class="qtd" type="text"></span> </th>
             <th> <span><input class="fornecedor" type="text"></span> </th>
@@ -54,7 +54,7 @@ $(document).ready(() => {
         let id = $(this).parent().parent().attr("id");
         $("#" + id + " th").each(function (index) {
             if (index == 0) {
-                $(this).children().removeClass("editCurrentItem fa-floppy-o").addClass("listEdit fa-pencil");
+                $(this).children().removeClass("editCurrentItem fa-save").addClass("listEdit fa-edit");
             }
             if (index != 0 && index != 6) {
                 let currentInputValue = $(this).children().children().val();
@@ -88,6 +88,7 @@ $(document).ready(() => {
             }).then(function (data) {
                 allData.push(data.newData);
                 allKeys.push(data.key)
+                console.log(data.key)
                 newItemSuccess(data.key);
                 clickable = true;
             });
@@ -116,7 +117,7 @@ $(document).ready(() => {
             }
             fetch('/editListItem', {
                 method: 'post',
-                body: JSON.stringify(newItemInfo),
+                body: JSON.stringify(editItemInfo),
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -204,7 +205,7 @@ function newItemSuccess(id) {
     $(".newItem").attr("id", id);
     $(".newItem th").each(function (index) {
         if (index == 0) {
-            $(this).children().removeClass("listSave fa-floppy-o").addClass("listEdit fa-pencil");
+            $(this).children().removeClass("listSave fa-save").addClass("listEdit fa-edit");
         }
         if (index != 0 && index != 6) {
             let currentInputValue = $(this).children().children().val();
@@ -223,7 +224,7 @@ function editItemSuccess(id) {
     showMsg();
     $("#" + id + " th").each(function (index) {
         if (index == 0) {
-            $(this).children().removeClass("editCurrentItem fa-floppy-o").addClass("listEdit fa-pencil");
+            $(this).children().removeClass("editCurrentItem fa-save").addClass("listEdit fa-edit");
         }
         if (index != 0 && index != 6) {
             let currentInputValue = $(this).children().children().val();
@@ -242,7 +243,7 @@ function spansToInputs(current) {
     console.log(current);
     $("#" + current + " th").each(function (index) {
         if (index == 0) {
-            $(this).children().removeClass("listEdit fa-pencil").addClass("editCurrentItem fa-floppy-o");
+            $(this).children().removeClass("listEdit fa-edit").addClass("editCurrentItem fa-save");
         }
         if (index != 0 && index != 6) {
             let currentValue = $(this).children().html();
@@ -255,8 +256,8 @@ function spansToInputs(current) {
 }
 
 function showMsg() {
-    $(".messageContainer").addClass("showMsg");
+    $(".resultMessageContainer").removeClass("hideSlide");
     setTimeout(function () {
-        $(".messageContainer").removeClass("showMsg");
+        $(".resultMessageContainer").addClass("hideSlide");
     }, 2500);
 }

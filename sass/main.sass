@@ -51,10 +51,12 @@ iframe
 .resultMessageContainer
   height: 50px 
   position: absolute
+  top: 0
   @include centerHor
   display: flex 
   flex-direction: row 
   transition: all 300ms ease
+  z-index: 1000
   .resultIconContainer
     width: 50px 
     height: 100% 
@@ -119,3 +121,25 @@ iframe
       color: $feitoColor
     .cancelDelete:hover 
       color: $deleteIconColor
+@-webkit-keyframes rotate
+  from
+    transform: rotate(0deg)  
+  to
+    transform: rotate(3600deg)  
+
+.loader
+  width: 100% 
+  height: 100% 
+  background: white
+  transition: all 500ms ease
+  z-index: 1000
+  position: absolute
+  display: flex 
+  align-items: center 
+  justify-content: center
+  flex-direction: column
+  color: $searchContainer
+.spinner
+  font-size: 40px 
+  animation: rotate 10s linear infinite
+  margin-bottom: 20px

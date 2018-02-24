@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,27 @@
   <link rel="stylesheet" href="../css/reserva.css">
   <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:100,300,400,500,700" rel="stylesheet">
 </head>
+
 <body>
   <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="../js/fontawesome-all.min.js"></script>
-  <script type="text/javascript" src="../js/reserva.js"></script>  
+  <script type="text/javascript" src="../js/reserva.js"></script>
 
-  <div class="wrapperContainer">
-    <div class="messageContainer bg-success">
-      <span class="msg text-success"><span class="fa fa-check"></span> As alterações na lista foram realizadas com sucesso!</span>
+
+  <div class="hideSlide resultMessageContainer success">
+    <div class="resultIconContainer">
+      <span class="resultIcon fa fa-check"></span>
     </div>
+    <div class="resultMessageContent">
+      <span class="message">As alterações na lista foram realizadas com sucesso!</span>
+    </div>
+  </div>
+
+  <div class="loader">
+    <span class="spinner fa fa-spinner"></span>
+    <span>A CARREGAR LISTA...</span>
+  </div>
+  <div class="wrapperContainer">
     <div class="blackScreen hide"></div>
     <div class="deleteMsgContainer hide">
       <div class="deleteMsgHeader">
@@ -33,24 +46,35 @@
       <div class="listTableContainer">
         <table>
           <tr class="tableHeader">
-            <th class="addContainer" >
+            <th class="addContainer">
               <div class="addItemBtnContainer">
                 <span class="fa fa-plus"></span>
               </div>
             </th>
-            <th class="nameColumn"> <span>NOME</span> </th>
-            <th class="qntColumn"> <span>QUANTIDADE</span> </th>
-            <th> <span>FORNECEDOR</span> </th>
-            <th> <span>RESPONSÁVEL</span> </th>
-            <th> <span>LOCALIZAÇÃO</span> </th> 
+            <th class="nameColumn">
+              <span>NOME</span>
+            </th>
+            <th class="qntColumn">
+              <span>QUANTIDADE</span>
+            </th>
+            <th>
+              <span>FORNECEDOR</span>
+            </th>
+            <th>
+              <span>RESPONSÁVEL</span>
+            </th>
+            <th>
+              <span>LOCALIZAÇÃO</span>
+            </th>
             <th></th>
-          </tr> 
+          </tr>
           <tbody class="materialListContainer">
 
-          </tbody>        
+          </tbody>
         </table>
       </div>
     </div>
   </div>
 </body>
+
 </html>

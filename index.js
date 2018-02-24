@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require("body-parser");
 var path = require("path");
 var encomendas = require("./routes/encomendas");
-// var gestao = require("./routes/gestao");
+var reserva = require("./routes/reserva");
 // var auth = require("./middlewares/auth");
 var app = express();
 
@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({
 // Get Static Path
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", encomendas);
+app.use("/", reserva);
 // app.use("/gestao", gestao.router);
 
 

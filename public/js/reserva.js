@@ -88,7 +88,6 @@ $(document).ready(() => {
             }).then(function (data) {
                 allData.push(data.newData);
                 allKeys.push(data.key)
-                console.log(data.key)
                 newItemSuccess(data.key);
                 clickable = true;
             });

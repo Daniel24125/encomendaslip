@@ -6,13 +6,6 @@ var firebase = require('firebase');
 
 var materialListRef = firebase.database().ref("materialReserva/lista");
 
-
-
-function errDataMaterial(err) {
-  console.log(err);
-}
-
-
 router.get("/getMaterialList", (req,res)=>{
   materialListRef.once("value", (data)=>{
     let materialList = [], materialKeys;

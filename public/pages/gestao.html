@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/projects.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:100,300,400,500,700" rel="stylesheet">
 </head>
+
 <body>
-  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="../js/fontawesome-all.min.js"></script>
+  <script type="text/javascript" src="../js/projects.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+
+  <div class="hideSlide resultMessageContainer success">
+    <div class="resultIconContainer">
+      <span class="resultIcon fa fa-check"></span>
+    </div>
+    <div class="resultMessageContent">
+      <span class="message"></span>
+    </div>
+  </div>
+
+  <div class="loader">
+    <span class="spinner fa fa-spinner"></span>
+    <span>A CARREGAR LISTA...</span>
+  </div>
+
+  <div class="projectsHeaderContainer">
+    <div class="newProjectContainer">NOVO PROJETO</div>
+  </div>
+  <div class="projectsStatsContainer">
+    <div class="cardContainer">
+      <div class="cardOverflowContainter"></div>
+    </div>
+    <div class="projectsBalanceContainer">
+      <div class="graphContainer">
+        <canvas id="statsChart"></canvas>
+      </div>
+
+    </div>
+  </div>
+
+
 </body>
+
 </html>

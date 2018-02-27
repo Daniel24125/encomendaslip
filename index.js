@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var encomendas = require("./routes/encomendas");
 var reserva = require("./routes/reserva");
+var projects = require("./routes/gestao.js")
 // var auth = require("./middlewares/auth");
 var app = express();
 
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", encomendas);
 app.use("/", reserva);
-// app.use("/gestao", gestao.router);
+app.use("/", projects)
 
 
 app.listen(app.get("port"), function() {

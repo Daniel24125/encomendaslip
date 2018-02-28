@@ -29,9 +29,10 @@
             display: flex 
             flex-direction: row
             align-items: center
+            
             .card
                 width: 300px 
-                height: 200px
+                height: 230px
                 margin: 0 10px
                 display: flex 
                 justify-content: flex-start
@@ -67,15 +68,34 @@
                     font-size: 12px 
                     text-align: center 
                 .infoContainer
-                    width: 90%
+                    width: 100%
                     display: flex
-                    flex-direction: column
-                    justify-content: space-around
-                    align-content: flex-start 
-                    .cardInfoContainer
-                        padding: 3px 10px
-                        .infoCategory
-                            color: $feitoColor
+                    flex-direction: row
+                    align-items: flex-start 
+                    .statsNumbersContainer
+                        width: 60% 
+                        display: flex 
+                        flex-direction: column
+                        justify-content: space-around
+                        align-items: flex-start
+                        .cardInfoContainer
+                            padding: 3px 10px
+                            .infoCategory
+                                color: $feitoColor
+                    .pad 
+                        width: 40%
+                        justify-content: center
+                        align-items: center
+                        .cardInfoContainer
+                            width: 90px 
+                            height: 90px
+                            background: $errorMessageBackground
+                            border-radius: 100% 
+                            color: white 
+                            display: flex 
+                            align-items: center 
+                            justify-content: center
+                            padding: 0
                 .cardFooterContainer
                     position: absolute 
                     right: 10px
@@ -90,4 +110,17 @@
                         margin: 0 5px
                         &:hover 
                             color: white
-                        
+        .activeCard
+            background: $selectedCard !important            
+            .projectTitle
+                color: $cardBackground !important   
+            .yearsContainer
+                .activeYear
+                    color: #d2dae2 !important
+            .infoCategory
+                color: $cardBackground !important  
+            .pad 
+                .cardInfoContainer
+                    background: $cardBackground !important 
+            .cardFooterContainer 
+                color: $selectedCardText !important

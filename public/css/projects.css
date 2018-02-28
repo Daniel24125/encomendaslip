@@ -2,7 +2,7 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow: hidden; }
+  overflow-x: hidden; }
 
 * {
   font-family: 'Roboto', sans-serif; }
@@ -250,7 +250,7 @@ iframe {
   height: 100vh;
   background: #ebebeb; }
   .projectsStatsContainer .cardContainer {
-    height: 200px;
+    height: 250px;
     padding: 20px;
     overflow-x: auto;
     -webkit-transition: all 500ms ease;
@@ -286,7 +286,7 @@ iframe {
       align-items: center; }
       .projectsStatsContainer .cardContainer .cardOverflowContainter .card {
         width: 300px;
-        height: 200px;
+        height: 230px;
         margin: 0 10px;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -340,22 +340,59 @@ iframe {
           font-size: 12px;
           text-align: center; }
         .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer {
-          width: 90%;
+          width: 100%;
           display: -webkit-box;
           display: -ms-flexbox;
           display: flex;
-          -webkit-box-orient: vertical;
+          -webkit-box-orient: horizontal;
           -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-          flex-direction: column;
-          -ms-flex-pack: distribute;
-          justify-content: space-around;
-          -ms-flex-line-pack: start;
-          align-content: flex-start; }
-          .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer .cardInfoContainer {
-            padding: 3px 10px; }
-            .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer .cardInfoContainer .infoCategory {
-              color: #2ecc71; }
+          -ms-flex-direction: row;
+          flex-direction: row;
+          -webkit-box-align: start;
+          -ms-flex-align: start;
+          align-items: flex-start; }
+          .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer .statsNumbersContainer {
+            width: 60%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start; }
+            .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer .statsNumbersContainer .cardInfoContainer {
+              padding: 3px 10px; }
+              .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer .statsNumbersContainer .cardInfoContainer .infoCategory {
+                color: #2ecc71; }
+          .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer .pad {
+            width: 40%;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center; }
+            .projectsStatsContainer .cardContainer .cardOverflowContainter .card .infoContainer .pad .cardInfoContainer {
+              width: 90px;
+              height: 90px;
+              background: #c0392b;
+              border-radius: 100%;
+              color: white;
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              -webkit-box-pack: center;
+              -ms-flex-pack: center;
+              justify-content: center;
+              padding: 0; }
         .projectsStatsContainer .cardContainer .cardOverflowContainter .card .cardFooterContainer {
           position: absolute;
           right: 10px;
@@ -376,6 +413,18 @@ iframe {
             margin: 0 5px; }
             .projectsStatsContainer .cardContainer .cardOverflowContainter .card .cardFooterContainer span:hover {
               color: white; }
+    .projectsStatsContainer .cardContainer .activeCard {
+      background: #0097e6 !important; }
+      .projectsStatsContainer .cardContainer .activeCard .projectTitle {
+        color: #1a1d21 !important; }
+      .projectsStatsContainer .cardContainer .activeCard .yearsContainer .activeYear {
+        color: #d2dae2 !important; }
+      .projectsStatsContainer .cardContainer .activeCard .infoCategory {
+        color: #1a1d21 !important; }
+      .projectsStatsContainer .cardContainer .activeCard .pad .cardInfoContainer {
+        background: #1a1d21 !important; }
+      .projectsStatsContainer .cardContainer .activeCard .cardFooterContainer {
+        color: #3d3d3d !important; }
 
 .projectsBalanceContainer {
   width: calc(100% - 50px);

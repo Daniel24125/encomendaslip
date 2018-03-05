@@ -2,6 +2,7 @@ var firebase = require('firebase');
 var auth = firebase.auth();
 var express = require('express');
 var router = express.Router();
+var cookieParser = require("cookie-parser")
 var logResponse;
 
 
@@ -11,19 +12,28 @@ var logResponse;
 router.post("/login", function(req, res) {
   var email = req.body.email;
   var pass = req.body.password;
-  var promise = auth.signInWithEmailAndPassword(email, pass);
-  promise
-    .then(function(user) {
-      res.send({
-        error: false
-      });
-    })
-    .catch(function(error) {
-      res.send({
-        error: true,
-        "msg": error.message
-      });
+  auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
+  .then(function() {
+    return firebase.auth().signInWithEmailAndPassword(email, pass);
+  }).then(function(){
+    res.send({
+      error: false
     });
+  })
+  .catch(function(error) {
+    res.send({
+      error: true,
+      "msg": error.message
+    });
+  });
+  // var promise = auth.signInWithEmailAndPassword(email, pass);
+  // promise
+  //   .then(function(user) {
+      
+  //   })
+  //   .catch(function(error) {
+     
+  //   });
 });
 
 

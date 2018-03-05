@@ -209,6 +209,237 @@ iframe {
   animation: rotate 10s linear infinite;
   margin-bottom: 20px; }
 
+.blackBackground {
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.9;
+  z-index: 100;
+  position: absolute;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease; }
+
+.addListItemContainer {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 200;
+  position: absolute;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease; }
+  .addListItemContainer .formContainer {
+    width: 55%;
+    height: 90%;
+    background: white;
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 10px 30px;
+    overflow-y: auto;
+    position: relative; }
+    .addListItemContainer .formContainer .newItemHeader {
+      width: 100%;
+      background: #3367d6;
+      text-align: center;
+      color: white;
+      padding: 20px 0;
+      z-index: 10;
+      margin-bottom: 30px; }
+    .addListItemContainer .formContainer .newItemIconsContainer {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 50px;
+      z-index: 500;
+      background: white; }
+      .addListItemContainer .formContainer .newItemIconsContainer .iconsContainer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        font-size: 16px; }
+        .addListItemContainer .formContainer .newItemIconsContainer .iconsContainer .newItemIcon {
+          margin: 10px 0 !important;
+          cursor: pointer !important;
+          text-align: center; }
+        .addListItemContainer .formContainer .newItemIconsContainer .iconsContainer .notClicked {
+          color: #b0b0b0; }
+      .addListItemContainer .formContainer .newItemIconsContainer .estadoContainer {
+        border-bottom: 2px solid #EA2027; }
+      .addListItemContainer .formContainer .newItemIconsContainer .feito {
+        color: #2ecc71; }
+      .addListItemContainer .formContainer .newItemIconsContainer .pendente {
+        color: #f1c40f; }
+      .addListItemContainer .formContainer .newItemIconsContainer .cabimentado {
+        color: #55efc4; }
+      .addListItemContainer .formContainer .newItemIconsContainer .encomendado {
+        color: #7f8c8d; }
+      .addListItemContainer .formContainer .newItemIconsContainer .anulado {
+        color: #e74c3c; }
+      .addListItemContainer .formContainer .newItemIconsContainer .newFaturaSecretaria {
+        color: #be2edd; }
+      .addListItemContainer .formContainer .newItemIconsContainer .pedidoCredito {
+        color: #4834d4; }
+    .addListItemContainer .formContainer .inputContainer {
+      width: 40%;
+      height: 50px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      margin: 0 20px 20px 0;
+      position: relative; }
+      .addListItemContainer .formContainer .inputContainer label {
+        -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        transform: translateY(100%);
+        z-index: 1;
+        -webkit-transition: all 200ms ease;
+        -o-transition: all 200ms ease;
+        transition: all 200ms ease;
+        color: #b0b0b0; }
+      .addListItemContainer .formContainer .inputContainer input, .addListItemContainer .formContainer .inputContainer textarea, .addListItemContainer .formContainer .inputContainer select {
+        border: none;
+        border-bottom: 2px solid #b0b0b0;
+        z-index: 2;
+        background: none; }
+        .addListItemContainer .formContainer .inputContainer input:focus, .addListItemContainer .formContainer .inputContainer textarea:focus, .addListItemContainer .formContainer .inputContainer select:focus {
+          outline: none;
+          border-bottom-color: #3367d6; }
+      .addListItemContainer .formContainer .inputContainer #fornecedor {
+        width: 80%; }
+      .addListItemContainer .formContainer .inputContainer select {
+        font-size: 16px; }
+      .addListItemContainer .formContainer .inputContainer textarea {
+        height: 200px; }
+      .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer {
+        position: absolute;
+        right: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+        align-items: flex-end;
+        -webkit-transform: translateX(100px);
+        -ms-transform: translateX(100px);
+        transform: translateX(100px);
+        z-index: 200; }
+        .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .showFornecedoresListBtn {
+          width: 50px;
+          height: 50px;
+          background: #3367d6;
+          color: white;
+          cursor: pointer;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          font-size: 20px; }
+          .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .showFornecedoresListBtn:hover {
+            background: #2850a7; }
+        .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .fornecedoresList {
+          width: 110px;
+          height: 200px;
+          -webkit-transform: translateY(150px);
+          -ms-transform: translateY(150px);
+          transform: translateY(150px);
+          overflow-y: auto;
+          overflow-x: hidden;
+          -webkit-transition: all 300ms ease;
+          -o-transition: all 300ms ease;
+          transition: all 300ms ease; }
+          .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .fornecedoresList::-webkit-scrollbar-track {
+            background-color: none; }
+          .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .fornecedoresList::-webkit-scrollbar {
+            width: 5px;
+            background-color: #3367d6; }
+          .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .fornecedoresList::-webkit-scrollbar-thumb {
+            background-color: #130f40; }
+          .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .fornecedoresList .fornecedor {
+            width: 100%;
+            padding: 10px;
+            background: #3367d6;
+            color: white;
+            font-size: 12px;
+            cursor: pointer; }
+            .addListItemContainer .formContainer .inputContainer .fornecedoresListContainer .fornecedoresList .fornecedor:hover {
+              background: #2850a7; }
+    .addListItemContainer .formContainer .fullWidthInput {
+      width: 100%; }
+      .addListItemContainer .formContainer .fullWidthInput .submitBtn {
+        width: 100%;
+        color: #3367d6;
+        padding: 10px 0;
+        text-align: right;
+        margin-top: 20px; }
+        .addListItemContainer .formContainer .fullWidthInput .submitBtn span {
+          cursor: pointer;
+          margin: 0 10px; }
+        .addListItemContainer .formContainer .fullWidthInput .submitBtn .cancelNewItem {
+          color: #EA2027; }
+    .addListItemContainer .formContainer .inputFocus label {
+      -webkit-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
+      transform: translateY(-10px);
+      color: #3367d6;
+      font-size: 12px; }
+
 .projectsHeaderContainer {
   width: 100%;
   height: 70px;
@@ -244,6 +475,34 @@ iframe {
     .projectsHeaderContainer .newProjectContainer:hover {
       background: none;
       color: white; }
+
+.newProjOptionsContainer {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: #3367d6;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row; }
+  .newProjOptionsContainer span {
+    margin: 0 10px;
+    cursor: pointer; }
+  .newProjOptionsContainer .cancelNewProj {
+    color: #e74c3c; }
+
+.formContainer {
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+  padding: 50px !important;
+  height: 70% !important; }
 
 .projectsStatsContainer {
   width: 100%;
@@ -413,6 +672,10 @@ iframe {
             margin: 0 5px; }
             .projectsStatsContainer .cardContainer .cardOverflowContainter .card .cardFooterContainer span:hover {
               color: white; }
+          .projectsStatsContainer .cardContainer .cardOverflowContainter .card .cardFooterContainer .deleteProject {
+            color: #c0392b; }
+          .projectsStatsContainer .cardContainer .cardOverflowContainter .card .cardFooterContainer .editProject {
+            color: #f1c40f; }
     .projectsStatsContainer .cardContainer .activeCard {
       background: #0097e6 !important; }
       .projectsStatsContainer .cardContainer .activeCard .projectTitle {

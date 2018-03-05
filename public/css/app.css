@@ -110,7 +110,7 @@ iframe {
 .hideSlide {
   top: -300px; }
 
-.confirmDeleteContainer {
+.confirmDeleteContainer, .confirmDeleteContainerCredito {
   width: 350px;
   background: white;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -133,7 +133,7 @@ iframe {
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
   z-index: 1000; }
-  .confirmDeleteContainer .messageContainer {
+  .confirmDeleteContainer .messageContainer, .confirmDeleteContainerCredito .messageContainer {
     width: 100%;
     height: 100px;
     display: -webkit-box;
@@ -144,9 +144,9 @@ iframe {
     align-items: center;
     font-size: 16px;
     color: #6c6c6c; }
-    .confirmDeleteContainer .messageContainer span {
+    .confirmDeleteContainer .messageContainer span, .confirmDeleteContainerCredito .messageContainer span {
       margin: 20px; }
-  .confirmDeleteContainer .footerContainer {
+  .confirmDeleteContainer .footerContainer, .confirmDeleteContainerCredito .footerContainer {
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -163,12 +163,12 @@ iframe {
     -ms-flex-align: center;
     align-items: center;
     color: #3367d6; }
-    .confirmDeleteContainer .footerContainer span {
+    .confirmDeleteContainer .footerContainer span, .confirmDeleteContainerCredito .footerContainer span {
       cursor: pointer;
       margin-right: 20px; }
-    .confirmDeleteContainer .footerContainer .confirmDelete:hover {
+    .confirmDeleteContainer .footerContainer .confirmDelete:hover, .confirmDeleteContainerCredito .footerContainer .confirmDelete:hover {
       color: #2ecc71; }
-    .confirmDeleteContainer .footerContainer .cancelDelete:hover {
+    .confirmDeleteContainer .footerContainer .cancelDelete:hover, .confirmDeleteContainerCredito .footerContainer .cancelDelete:hover {
       color: #e74c3c; }
 
 @-webkit-keyframes rotate {
@@ -500,3 +500,92 @@ iframe {
       color: white;
       font-size: 12px;
       cursor: pointer; }
+
+.listaCreditosContainer {
+  width: 200px;
+  height: 100%;
+  background: #0f161b;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  z-index: 500;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  left: -200px; }
+  .listaCreditosContainer .creditosHeader {
+    width: 100%;
+    height: 50px;
+    background: #0f161b; }
+    .listaCreditosContainer .creditosHeader .closeCreditos {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 12px; }
+    .listaCreditosContainer .creditosHeader .addCreditos {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 12px; }
+      .listaCreditosContainer .creditosHeader .addCreditos:hover {
+        color: #55efc4; }
+  .listaCreditosContainer .listaCreditos {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden; }
+    .listaCreditosContainer .listaCreditos::-webkit-scrollbar-track {
+      background-color: none; }
+    .listaCreditosContainer .listaCreditos::-webkit-scrollbar {
+      width: 5px;
+      background-color: #0f161b; }
+    .listaCreditosContainer .listaCreditos::-webkit-scrollbar-thumb {
+      background-color: #130f40; }
+    .listaCreditosContainer .listaCreditos .creditos {
+      width: 100%;
+      padding: 10px;
+      font-size: 12px;
+      color: white;
+      cursor: pointer;
+      position: relative; }
+      .listaCreditosContainer .listaCreditos .creditos:hover {
+        background: #130f40; }
+      .listaCreditosContainer .listaCreditos .creditos:hover .creditosDisplayName {
+        color: white; }
+      .listaCreditosContainer .listaCreditos .creditos .creditosDisplayName {
+        color: #888e9a; }
+      .listaCreditosContainer .listaCreditos .creditos .creditosDisplayValue {
+        color: #2ecc71 !important; }
+      .listaCreditosContainer .listaCreditos .creditos .optionsCredito {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%); }
+        .listaCreditosContainer .listaCreditos .creditos .optionsCredito span {
+          margin-left: 3px; }
+        .listaCreditosContainer .listaCreditos .creditos .optionsCredito .deleteCredito:hover, .listaCreditosContainer .listaCreditos .creditos .optionsCredito .cancelCredito:hover, .listaCreditosContainer .listaCreditos .creditos .optionsCredito .cancelEditCredito:hover {
+          color: #e74c3c; }
+        .listaCreditosContainer .listaCreditos .creditos .optionsCredito .editCredito:hover {
+          color: #f1c40f; }
+        .listaCreditosContainer .listaCreditos .creditos .optionsCredito .saveCredito:hover, .listaCreditosContainer .listaCreditos .creditos .optionsCredito .saveEditCredito:hover {
+          color: #3367d6; }
+  .listaCreditosContainer input {
+    width: 40%;
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #130f40;
+    color: white; }
+  .listaCreditosContainer #newCredValue {
+    width: 20%; }

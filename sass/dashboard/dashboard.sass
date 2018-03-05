@@ -1,0 +1,155 @@
+.dashboardWrapper
+    width: 100% 
+    height: 100vh
+    background: $flatGrey
+    overflow-y: auto
+    overflow-x: hidden
+    display: flex 
+    flex-direction: column
+    align-items: center
+
+    .numEstadosContainer
+        width: 100% 
+        height: 150px 
+        display: flex
+        flex-direction: row 
+        justify-content: space-around
+        align-items: center 
+        .estadoCard
+            width: 23% 
+            height: 100px 
+            color: white 
+            @include cardStyle 
+            position: relative
+            cursor: pointer
+            .iconContainer
+                position: absolute 
+                right: -$positionClip 
+                bottom: -$positionClip 
+                font-size: 90px 
+                opacity: 0.6
+                clip-path: inset(0px $positionClip $positionClip 0px)
+            .statsContainer
+                font-size: 12px 
+                padding: 10px 20px
+                .numStats 
+                    font-size: 30px
+                    font-weight: bold
+                p 
+                    margin: 0
+                .rotate 
+                    transform: rotate(180deg)
+            
+        #Encomendado
+            background: $encomendadoColor
+        #Pendente
+            background: $pendenteColor
+        #Cabimento_pedido
+            background: $searchContainer
+        #Anulado
+            background: $deleteIconColor
+    .pedidosListContainer
+        width: 100% 
+        max-height: 300px 
+        transition: all 300ms ease
+        display: flex 
+        align-items: center 
+        flex-direction: column
+        padding: 30px 0
+        position: relative
+        overflow-y: auto
+    
+        .listTable
+            width: 95% 
+            background: white
+            @include cardStyle
+            padding: 10px
+            tr 
+                height: 40px
+                .cell
+                    min-width: 100px
+                    text-align: left
+                    font-size: 13px 
+                    color: $tableText
+                    font-weight: 400 
+                    border-bottom: 1px solid $tableHeaderText
+                    padding: 0 5px
+                    .copiarPedido
+                        color: $pendenteColor
+                        cursor: pointer
+                &:last-child th
+                    border: none
+            .stateIcon
+                width: 25px !important
+                color: $tableHeaderText
+            .tableHeader
+                th 
+                    color: $tableHeaderText
+                    font-size: 12px 
+                    font-weight: 500 
+                    text-align: left
+        .closePedidosContainer
+            width: 95% 
+            text-align: right 
+            color: $searchContainer
+            padding: 10px 0
+            span 
+                cursor: pointer
+                &:hover 
+                    color: $deleteIconColor
+    .projectsStatsContainer
+        width: 100%
+        margin-top: 30px
+        display: flex 
+        flex-direction: row 
+        align-items: center 
+        justify-content: flex-start
+        .projectUsedGraph
+            position: relative
+            background: white 
+            @include cardStyle
+            display: flex 
+            justify-content: center 
+            align-items: center 
+            padding: 40px 0    
+            margin-left: 30px 
+            .mostUsedContainer
+                position: absolute 
+                @include centerHorVer
+                color: $searchContainer
+                display: flex 
+                flex-direction: column
+                justify-content: center 
+                align-content: center 
+                z-index: 100
+                text-align: center
+                .mostUsedName
+                    font-size: 30px
+        .projectNearEndContainer       
+            width: 40% 
+            height: 150px 
+            background: white 
+            @include cardStyle 
+            padding: 40px 20px
+            position: relative
+            margin: 0 30px
+            .nearEndProject
+                font-size: 70px 
+                color: $deleteIconColor 
+            .nearEndDate
+                color: $tableHeaderText
+                text-align: right    
+                font-size: 30px    
+            .iconContainer
+                position: absolute
+                left: -$positionClip 
+                bottom: -$positionClip 
+                font-size: 90px 
+                opacity: 0.3
+                clip-path: inset(0px 0 $positionClip $positionClip );
+
+.heightZero 
+    height: 0 !important
+    padding: 0 !important
+    visibility: hidden 
+    opacity: 0

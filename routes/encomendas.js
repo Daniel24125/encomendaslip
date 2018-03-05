@@ -16,21 +16,21 @@ var ref = firebase.database().ref("registoLIP");
 
 router.get('/getData', (req, res) => {
   let receivedData = [],
-  keys;
+    keys;
   ref.once("value", (data) => {
-    keys = Object.keys(data.val());
-    keys.map(key => receivedData.push(data.val()[key]))
-    let numElements = parseInt(req.query.num);
-    let length = keys.length;
-    let sendData = receivedData.slice(length - (numElements + 30), length - numElements)
-    let sendKeys = keys.slice(length - (numElements + 30), length - numElements)
-    res.send({
-      "keys": sendKeys,
-      "data": sendData
-    });
-      
-  },
-  (err) => console.log(err));
+      keys = Object.keys(data.val());
+      keys.map(key => receivedData.push(data.val()[key]))
+      let numElements = parseInt(req.query.num);
+      let length = keys.length;
+      let sendData = receivedData.slice(length - (numElements + 30), length - numElements)
+      let sendKeys = keys.slice(length - (numElements + 30), length - numElements)
+      res.send({
+        "keys": sendKeys,
+        "data": sendData
+      });
+
+    },
+    (err) => console.log(err));
 });
 
 // SEARCH ORDER
@@ -73,7 +73,7 @@ router.post('/addNew', (req, res) => {
   res.send({
     msg: "O seu registo foi adicionado com sucesso",
     newData: {
-      key: key.key, 
+      key: key.key,
       data: req.body
     }
   });
@@ -87,11 +87,12 @@ router.post('/editOrder', (req, res) => {
   });
 });
 
-router.delete("/removeOrder",(req, res)=>{
+router.delete("/removeOrder", (req, res) => {
   let id = req.body.id
   ref.child(id).remove();
   res.send({
-    msg:"A encomenda foi removida com sucesso"});
+    msg: "A encomenda foi removida com sucesso"
+  });
 });
 
 //GESTÃO DE FORNECEDORES
@@ -113,15 +114,76 @@ router.post('/addNewFornecedor', (req, res) => {
     .set(receivedData[receivedNome])
   res.send({
     msg: "O fornecedor foi adicionado com sucesso",
-    data : receivedData[receivedNome]
-    });
+    data: receivedData[receivedNome]
+  });
 });
 
-router.delete("/removeFornecedor",(req, res)=>{
-  var fornecedorNome = req.body.fornecedorName;
+router.delete("/removeFornecedor", (req, res) => {
+  let fornecedorNome = req.body.fornecedorName;
   fornecedores.child(fornecedorNome).remove();
   res.send({
-    msg:"O fornecedor foi removido com sucesso"});
+    msg: "O fornecedor foi removido com sucesso"
+  });
 });
+
+// GESTÃO DE CRÉDITOS
+
+let credRef = firebase.database().ref("gestãoLIP/Crédito");
+
+router.get("/getCred", (req, res) => {
+  let creditos, sendCreditosData = {};
+  credRef.once("value", function (data) {
+    creditos = data.val();
+  }, function (err) {
+    console.log(err);
+  });
+  
+  ref.orderByChild("fundo").equalTo("Crédito").once("value", (snap) => {
+    let queryData = snap.val();
+    let d = new Date();
+    let currentDateYear = d.getFullYear();
+    let currentDateMes = d.getMonth() + 1;
+    if(queryData != null){
+      Object.keys(creditos).map((value) => {
+        let offsetCredMes = creditos[value][1],
+        offsetCredAno = creditos[value][2],
+        realCredValue = creditos[value][0];
+        Object.keys(queryData).map((order) => {
+          if (queryData[order].fornecedor == value && queryData[order].fundo == "Crédito" && ((queryData[order].pedidoMes >= offsetCredMes && queryData[order].pedidoAno == currentDateYear) || queryData[order].pedidoAno > offsetCredAno)) {
+            realCredValue -= parseFloat(queryData[order].faturado)
+          }
+          if (queryData[order].fornecedor == value && queryData[order].pedidoCredito == "Sim" && ((queryData[order].pedidoMes >= offsetCredMes && queryData[order].pedidoAno == currentDateYear) || queryData[order].pedidoAno > offsetCredAno)) {
+            realCredValue += parseFloat(queryData[order].faturado);
+          }
+        });
+        sendCreditosData[value] =realCredValue.toFixed(2);
+      });
+    }
+    res.send(sendCreditosData)
+  });
+});
+
+router.post("/saveCredito", function (req, res) {
+  let d = new Date();
+  let currentDateYear = d.getFullYear();
+  let currentDateMes = d.getMonth() + 1;
+  credRef.child(req.body.name).set([
+    req.body.value,
+    currentDateMes,
+    currentDateYear])
+  res.send({
+    msg: "Os seus dados foram alterados com sucesso!",
+    name: req.body.name,
+    value: req.body.value
+  });
+});
+
+router.delete("/removeCred", function (req, res) {
+  credRef.child(req.body.cred).remove();
+  res.send({
+    msg: "O crédito foi removido com sucesso"
+  });
+});
+
 
 module.exports = router;

@@ -50,26 +50,28 @@ router.post("/projectStats", (req, res) => {
 
 });
 
+router.post("/addNewProject", (req, res)=>{
+  let receivedData = req.body; 
+
+  projectsRef.child(receivedData.nomeProjeto).update({
+    OrcTotal : receivedData.OrcTotal, 
+    OrcTotalDisp: receivedData.OrcTotalDisp,
+    DataInicio: receivedData.DataInicio,
+    DataFim: receivedData.DataFim
+  });
+  projectsRef.child(receivedData.nomeProjeto)
+    .child(receivedData.anoProjeto)
+    .child("plafonds").set({
+      PlafondAtribuido: receivedData.PlafondAtribuido,
+      PlafondDisp: receivedData.PlafondDisp
+    })
+  res.send({msg:"Success"})
+});
+
+router.delete("/deleteProject", (req, res)=>{
+  let id = req.body.id; 
+  projectsRef.child(id).remove()
+  res.send({msg:"Success"})
+});
+
 module.exports = router;
-
-
-
-// for (let j = 0; j < totalCabimentado.length; j++) {
-//   for (let i = 0; i < dados.length; i++) {
-//     //Calculo de total cabimentado por mes
-//     if (dados[i].pedidoMes == j + 1 && dados[i].pedidoAno == currentYear && dados[i].cabimentado != "") {
-//       totalCabimentado[j] += parseFloat(dados[i].cabimentado);
-//     }
-//     if (dados[i].pedidoMes == j + 1 && dados[i].pedidoAno == currentYear && dados[i].estado == "Anulado" && dados[i].cabimentado != "") {
-//       totalCabimentado[j] -= parseFloat(dados[i].cabimentado);
-//     }
-//     if (dados[i].pedidoMes == j + 1 && dados[i].pedidoAno == currentYear && dados[i].estado == "Feito" && dados[i].cabimentado != "") {
-//       totalCabimentado[j] -= (parseFloat(dados[i].dif));
-//     }
-
-//     //Calculo de total faturado por mes
-//     if (dados[i].faturaMes == j + 1 && dados[i].faturaAno == currentYear && dados[i].faturado != "") {
-//       totalFaturado[j] += parseFloat(dados[i].faturado);
-//     }
-//   }
-// }

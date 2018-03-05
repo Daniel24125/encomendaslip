@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="navListContainer">
-          <div id="dashboard" class="navItemContainer">
+          <div id="dashboard" class="active navItemContainer">
             <div class="iconContainer">
               <span class="fa fa-tachometer"></span>
             </div>
@@ -37,13 +37,13 @@
             </div>
             <span class="navDesc hideComponent">Encomendas LIP</span>
           </div>
-          <div id="reserva" class="  navItemContainer">
+          <div id="reserva" class="navItemContainer">
             <div class="iconContainer">
               <span class="fa fa-list"></span>
             </div>
             <span class="navDesc hideComponent">Material de Reserva</span>
           </div>
-          <div id="gestao" class="active navItemContainer">
+          <div id="gestao" class="navItemContainer">
             <div class="iconContainer">
               <span class="fa fa-line-chart"></span>
             </div>
@@ -51,12 +51,12 @@
           </div>
         </div>
         <div class="optionsContainer">
-          <div id="info" class="navItemContainer">
+          <!-- <div id="info" class="navItemContainer">
             <div class="iconContainer">
               <span class="fa fa-info-circle"></span>
             </div>
             <span class="navDesc hideComponent">Informações</span>
-          </div>
+          </div> -->
           <div id="fornecedores" class="navItemContainer">
             <div class="iconContainer">
               <span class="fa fa-envelope"></span>
@@ -99,6 +99,19 @@
           </div>
         </div>
       </div>
+
+      <div class="listaCreditosContainer"> 
+        <div class="creditosHeader">
+          <div class="closeCreditos">
+            <span class="fa fa-times"></span>
+          </div>
+          <div class="addCreditos">
+            <span class="fa fa-plus"></span>
+          </div>
+        </div>
+        <div class="listaCreditos"></div>
+      </div>
+
       <div class="contentContainer">
         <div class="blackBackground hideComponent"></div>
 
@@ -117,6 +130,16 @@
           </div>
           <div class="footerContainer">
             <span class="confirmDelete">SIM</span>
+            <span class="cancelDelete">NÃO</span>
+          </div>
+        </div>
+
+        <div class="confirmDeleteContainerCredito hideComponent">
+          <div class="messageContainer">
+            <span>Eliminar Crédito?</span>
+          </div>
+          <div class="footerContainer">
+            <span class="confirmDeleteCredito">SIM</span>
             <span class="cancelDelete">NÃO</span>
           </div>
         </div>

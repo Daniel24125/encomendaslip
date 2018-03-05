@@ -3,8 +3,9 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var encomendas = require("./routes/encomendas");
 var reserva = require("./routes/reserva");
-var projects = require("./routes/gestao.js")
-// var auth = require("./middlewares/auth");
+var projects = require("./routes/gestao.js");
+var dashboard = require("./routes/dashboard.js");
+var auth = require("./middleware/auth");
 var app = express();
 
 app.set("port", (process.env.PORT || 3000));
@@ -14,21 +15,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-// app.use(auth.router);
+app.use(auth.router);
 
-// app.get('*', function(req, res, next){
-//    if(req.path.includes('log')){
-//     next();
-//    }else{
-//       auth.isAuthenticated(req, res, next);
-//    }
-// });
+app.get('*', function(req, res, next){
+   if(req.path.includes('log')){
+    next();
+   }else{
+      auth.isAuthenticated(req, res, next);
+   }
+});
 
 // Get Static Path
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", encomendas);
 app.use("/", reserva);
 app.use("/", projects)
+app.use("/", dashboard)
 
 
 app.listen(app.get("port"), function() {

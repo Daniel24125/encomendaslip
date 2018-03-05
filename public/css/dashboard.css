@@ -1,0 +1,425 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden; }
+
+* {
+  font-family: 'Roboto', sans-serif; }
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none; }
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto; }
+  a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto; }
+
+.contentContainer {
+  position: relative;
+  height: 100%;
+  padding-left: 50px;
+  width: 100%; }
+
+.hideComponent {
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1; }
+
+.blackBackground {
+  background: black;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  position: absolute;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out; }
+
+iframe {
+  width: 100%;
+  height: 100vh; }
+
+.resultMessageContainer {
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  z-index: 1000; }
+  .resultMessageContainer .resultIconContainer {
+    width: 50px;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 20px; }
+  .resultMessageContainer .resultMessageContent {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 50px 0 20px;
+    color: white;
+    font-size: 14px; }
+
+.success {
+  background: #10ac84;
+  border-bottom: 2px solid #218c74; }
+  .success .resultIconContainer {
+    background: #33d9b2;
+    color: #10ac84; }
+
+.error {
+  background: #c0392b;
+  border-bottom: 2px solid #b33939; }
+  .error .resultIconContainer {
+    background: #e74c3c;
+    color: #c0392b; }
+
+.hideSlide {
+  top: -300px; }
+
+.confirmDeleteContainer, .confirmDeleteContainerCredito {
+  width: 350px;
+  background: white;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  z-index: 1000; }
+  .confirmDeleteContainer .messageContainer, .confirmDeleteContainerCredito .messageContainer {
+    width: 100%;
+    height: 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 16px;
+    color: #6c6c6c; }
+    .confirmDeleteContainer .messageContainer span, .confirmDeleteContainerCredito .messageContainer span {
+      margin: 20px; }
+  .confirmDeleteContainer .footerContainer, .confirmDeleteContainerCredito .footerContainer {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 50px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #3367d6; }
+    .confirmDeleteContainer .footerContainer span, .confirmDeleteContainerCredito .footerContainer span {
+      cursor: pointer;
+      margin-right: 20px; }
+    .confirmDeleteContainer .footerContainer .confirmDelete:hover, .confirmDeleteContainerCredito .footerContainer .confirmDelete:hover {
+      color: #2ecc71; }
+    .confirmDeleteContainer .footerContainer .cancelDelete:hover, .confirmDeleteContainerCredito .footerContainer .cancelDelete:hover {
+      color: #e74c3c; }
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(3600deg);
+    transform: rotate(3600deg); } }
+
+.loader {
+  width: 100%;
+  height: 100%;
+  background: white;
+  -webkit-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+  z-index: 1000;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #3367d6; }
+
+.spinner {
+  font-size: 40px;
+  -webkit-animation: rotate 10s linear infinite;
+  animation: rotate 10s linear infinite;
+  margin-bottom: 20px; }
+
+.dashboardWrapper {
+  width: 100%;
+  height: 100vh;
+  background: #ebebeb;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .dashboardWrapper .numEstadosContainer {
+    width: 100%;
+    height: 150px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .dashboardWrapper .numEstadosContainer .estadoCard {
+      width: 23%;
+      height: 100px;
+      color: white;
+      -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      border-radius: 5px;
+      position: relative;
+      cursor: pointer; }
+      .dashboardWrapper .numEstadosContainer .estadoCard .iconContainer {
+        position: absolute;
+        right: -15px;
+        bottom: -15px;
+        font-size: 90px;
+        opacity: 0.6;
+        -webkit-clip-path: inset(0px 15px 15px 0px);
+        clip-path: inset(0px 15px 15px 0px); }
+      .dashboardWrapper .numEstadosContainer .estadoCard .statsContainer {
+        font-size: 12px;
+        padding: 10px 20px; }
+        .dashboardWrapper .numEstadosContainer .estadoCard .statsContainer .numStats {
+          font-size: 30px;
+          font-weight: bold; }
+        .dashboardWrapper .numEstadosContainer .estadoCard .statsContainer p {
+          margin: 0; }
+        .dashboardWrapper .numEstadosContainer .estadoCard .statsContainer .rotate {
+          -webkit-transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
+          transform: rotate(180deg); }
+    .dashboardWrapper .numEstadosContainer #Encomendado {
+      background: #7f8c8d; }
+    .dashboardWrapper .numEstadosContainer #Pendente {
+      background: #f1c40f; }
+    .dashboardWrapper .numEstadosContainer #Cabimento_pedido {
+      background: #3367d6; }
+    .dashboardWrapper .numEstadosContainer #Anulado {
+      background: #e74c3c; }
+  .dashboardWrapper .pedidosListContainer {
+    width: 100%;
+    max-height: 300px;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 30px 0;
+    position: relative;
+    overflow-y: auto; }
+    .dashboardWrapper .pedidosListContainer .listTable {
+      width: 95%;
+      background: white;
+      -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      border-radius: 5px;
+      padding: 10px; }
+      .dashboardWrapper .pedidosListContainer .listTable tr {
+        height: 40px; }
+        .dashboardWrapper .pedidosListContainer .listTable tr .cell {
+          min-width: 100px;
+          text-align: left;
+          font-size: 13px;
+          color: #1f1f1f;
+          font-weight: 400;
+          border-bottom: 1px solid #b0b0b0;
+          padding: 0 5px; }
+          .dashboardWrapper .pedidosListContainer .listTable tr .cell .copiarPedido {
+            color: #f1c40f;
+            cursor: pointer; }
+        .dashboardWrapper .pedidosListContainer .listTable tr:last-child th {
+          border: none; }
+      .dashboardWrapper .pedidosListContainer .listTable .stateIcon {
+        width: 25px !important;
+        color: #b0b0b0; }
+      .dashboardWrapper .pedidosListContainer .listTable .tableHeader th {
+        color: #b0b0b0;
+        font-size: 12px;
+        font-weight: 500;
+        text-align: left; }
+    .dashboardWrapper .pedidosListContainer .closePedidosContainer {
+      width: 95%;
+      text-align: right;
+      color: #3367d6;
+      padding: 10px 0; }
+      .dashboardWrapper .pedidosListContainer .closePedidosContainer span {
+        cursor: pointer; }
+        .dashboardWrapper .pedidosListContainer .closePedidosContainer span:hover {
+          color: #e74c3c; }
+  .dashboardWrapper .projectsStatsContainer {
+    width: 100%;
+    margin-top: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start; }
+    .dashboardWrapper .projectsStatsContainer .projectUsedGraph {
+      position: relative;
+      background: white;
+      -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      border-radius: 5px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 40px 0;
+      margin-left: 30px; }
+      .dashboardWrapper .projectsStatsContainer .projectUsedGraph .mostUsedContainer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #3367d6;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-line-pack: center;
+        align-content: center;
+        z-index: 100;
+        text-align: center; }
+        .dashboardWrapper .projectsStatsContainer .projectUsedGraph .mostUsedContainer .mostUsedName {
+          font-size: 30px; }
+    .dashboardWrapper .projectsStatsContainer .projectNearEndContainer {
+      width: 40%;
+      height: 150px;
+      background: white;
+      -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      border-radius: 5px;
+      padding: 40px 20px;
+      position: relative;
+      margin: 0 30px; }
+      .dashboardWrapper .projectsStatsContainer .projectNearEndContainer .nearEndProject {
+        font-size: 70px;
+        color: #e74c3c; }
+      .dashboardWrapper .projectsStatsContainer .projectNearEndContainer .nearEndDate {
+        color: #b0b0b0;
+        text-align: right;
+        font-size: 30px; }
+      .dashboardWrapper .projectsStatsContainer .projectNearEndContainer .iconContainer {
+        position: absolute;
+        left: -15px;
+        bottom: -15px;
+        font-size: 90px;
+        opacity: 0.3;
+        -webkit-clip-path: inset(0px 0 15px 15px);
+        clip-path: inset(0px 0 15px 15px); }
+
+.heightZero {
+  height: 0 !important;
+  padding: 0 !important;
+  visibility: hidden;
+  opacity: 0; }

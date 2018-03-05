@@ -11,6 +11,11 @@ $(document).ready(function () {
 
   });
 
+  $("#logout").click(function(){
+    fetch('/logout', {
+      method: 'post'
+    }).then(()=>  window.location.href = "log/login.html");
+  });
 
   $(".navListContainer .navItemContainer").click(function () {
     $(".active").removeClass("active");
@@ -20,6 +25,7 @@ $(document).ready(function () {
     $(this).addClass("active")
   });
 
+  // LISTA DE FORNECEDORES
 
   fetch('/getFornecedores')
     .then(response => response.json())
@@ -39,16 +45,20 @@ $(document).ready(function () {
 
     });
 
-
   $("#fornecedores").click(function () {
     let drawerWidth = parseInt($(".drawerHeaderContainer").css("width"));
     $(".listaFornecedoresContainer").css("left", drawerWidth + "px");
+    closeCreditos();
     $(".blackBackground").removeClass("hideComponent");
+
   });
 
+ 
   $(".closeFornecedores").click(function () {
     closeFornecedores();
   });
+
+
 
   $("body").on("click", ".fornecedor", function (e) {
     let fornecedorName = $(this).data("fornecedor");
@@ -57,7 +67,6 @@ $(document).ready(function () {
     let fornecedorNumero = $(this).data("numero");
     let topPosition = $(this).position().top;
     showFornecedoresCard(topPosition, fornecedorName, fornecedorComercial, fornecedorEmail, fornecedorNumero)
-
   });
 
   let fornecedorName, element;
@@ -87,7 +96,7 @@ $(document).ready(function () {
   });
 
   $(".cancelDelete").click(function(){
-    $(".confirmDeleteContainer").addClass("hideComponent")
+    $(".confirmDeleteContainer, .confirmDeleteContainerCredito").addClass("hideComponent")
   });
 
   let newFornecedorClicked = false;
@@ -171,6 +180,185 @@ $(document).ready(function () {
     newFornecedorClicked = false
   });
 
+  // LISTA DE CRÉDITOS
+
+  fetch('/getCred')
+  .then(response => response.json())
+  .then(res => {
+    Object.keys(res).map(name => {
+      let current = res[name]
+      $(".listaCreditos").append(`
+    <div class="credito creditos">
+      <span class="creditosDisplayName">${name}</span>:
+      <span class="creditosDisplayValue"> ${current}€</span>   
+      <div class="optionsCredito">
+        <span class="editCredito fa fa-edit"></span>
+        <span class="deleteCredito fa fa-trash"></span>
+      </div>
+    </div>
+    `)
+    });
+  });
+
+  $("#creditos").click(function () {
+    let drawerWidth = parseInt($(".drawerHeaderContainer").css("width"));
+    $(".listaCreditosContainer").css("left", drawerWidth + "px");
+    closeFornecedores();
+    $(".blackBackground").removeClass("hideComponent");
+  });
+
+  $(".closeCreditos").click(function () {
+    closeCreditos();
+  });
+
+  let addCredClicked = false;
+  
+  $(".addCreditos").click(function(){
+    if(addCredClicked==false){
+      $(".listaCreditos").append(`
+      <div class="newCredForm creditos">
+        <input name="newCredName" id="newCredName" placeholder="Nome"/>
+        <input name="newCredValue" id="newCredValue" placeholder="Valor"/>  
+        <div class="optionsCredito">
+          <span class="saveCredito fa fa-save"></span>
+          <span class="cancelCredito fa fa-times"></span>
+        </div>
+      </div>
+      `)
+      addCredClicked = true
+    }
+  });
+
+  $("body").on("click", ".cancelCredito", function(){
+    $(".newCredForm").remove();
+    addCredClicked = false
+  });
+
+  $("body").on("click", ".saveCredito", function(){
+    if($("#newCredName").val()!="" && $("#newCredValue").val()){
+     if(isNaN($("#newCredValue").val())==false){
+        fetch('/saveCredito', {
+          method: 'post',
+          body: JSON.stringify({
+            name: $("#newCredName").val(),
+            value: parseFloat($("#newCredValue").val())
+          }),
+          headers: {
+            'content-type': 'application/json'
+          },
+        }).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          showSuccessMessage(data.msg);
+          $(".newCredForm").remove();
+          $(".listaCreditos").append(`
+          <div class="creditos">
+          <span class="creditosDisplayName">${data.name}</span>:
+          <span class="creditosDisplayValue"> ${data.value}€</span>   
+          <div class="optionsCredito">
+            <span class="editCredito fa fa-edit"></span>
+            <span class="deleteCredito fa fa-trash"></span>
+          </div>
+        </div>
+          `)
+  
+          newFornecedorClicked = false
+        });
+      }else{
+        showErrorMessage("O valor do crédito necessita de ser um número")
+      }
+    }else{
+      showErrorMessage("Por favor preencha o nome e o valor do crédito")
+    }
+    addCredClicked = false
+  });
+
+  let clickedCred, credElement;
+  $("body").on("click", ".deleteCredito", function(){
+    credElement = $(this).parents().eq(1)
+    clickedCred = $(this).parents().eq(1).children(".creditosDisplayName").html();
+    $(".confirmDeleteContainerCredito").removeClass("hideComponent")
+  });
+
+  $(".confirmDeleteCredito").click(function(){
+    fetch('/removeCred', {
+      method: 'delete',
+      body: JSON.stringify({
+        cred: clickedCred
+      }),
+      headers: {
+        'content-type': 'application/json'
+      },
+    }).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      $(".confirmDelete").addClass("confirmDelete").removeClass("confirmDeleteCredito");
+      showSuccessMessage(data.msg);
+      $(".confirmDeleteContainerCredito").addClass("hideComponent");
+      credElement.remove()
+    });
+  });
+
+  let selectedName,selectedValue
+  $("body").on("click", ".editCredito",function(){
+    selectedName= $(this).parents().eq(1).children(".creditosDisplayName").html();
+    selectedValue   =$(this).parents().eq(1).children(".creditosDisplayValue").html().split("€")[0]
+        $(this).parents().eq(1).html("").append(`
+    <input name="newCredName" id="newCredName" placeholder="Nome" value="${selectedName}"/>
+        <input name="newCredValue" id="newCredValue" placeholder="Valor" value="${selectedValue}"/>  
+        <div class="optionsCredito">
+          <span class="saveEditCredito fa fa-save"></span>
+          <span class="cancelEditCredito fa fa-times"></span>
+        </div>
+        `)
+  });
+
+  $("body").on("click", ".cancelEditCredito", function(){
+    $(this).parents().eq(1).html("").append(`
+    <span class="creditosDisplayName">${selectedName}</span>:
+    <span class="creditosDisplayValue"> ${selectedValue}€</span>   
+    <div class="optionsCredito">
+      <span class="editCredito fa fa-edit"></span>
+      <span class="deleteCredito fa fa-trash"></span>
+    </div>
+    `)
+  });
+
+  $("body").on("click", ".saveEditCredito", function(){
+    if($("#newCredName").val()!="" && $("#newCredValue").val()){
+     if(isNaN($("#newCredValue").val())==false){
+      selectedName = $("#newCredName").val();
+      selectedValue = parseFloat($("#newCredValue").val());
+      $(this).parents().eq(1).html("").append(`
+      <span class="creditosDisplayName">${selectedName}</span>:
+      <span class="creditosDisplayValue"> ${selectedValue}€</span>   
+      <div class="optionsCredito">
+        <span class="editCredito fa fa-edit"></span>
+        <span class="deleteCredito fa fa-trash"></span>
+      </div>
+      `)
+        fetch('/saveCredito', {
+          method: 'post',
+          body: JSON.stringify({
+            name: selectedName,
+            value: selectedValue
+          }),
+          headers: {
+            'content-type': 'application/json'
+          },
+        }).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          showSuccessMessage(data.msg);
+        });
+      }else{
+        showErrorMessage("O valor do crédito necessita de ser um número")
+      }
+    }else{
+      showErrorMessage("Por favor preencha o nome e o valor do crédito")
+    }
+  });
+
   $("iframe").attr("src", "pages/" + $(".active").attr("id") + ".html")
 
   let showNav = () => {
@@ -220,6 +408,13 @@ $(document).ready(function () {
     closeFornecedoresInfo();
   }
 
+  
+  let closeCreditos = () => {
+    let distance = $(".listaCreditosContainer").css("width");
+    $(".listaCreditosContainer").css("left", `-${distance}`);
+    $(".blackBackground").addClass("hideComponent")
+  }
+
   let closeFornecedoresInfo = () => {
     let distance = $(".fornecedorCardContainer").css("width");
     $(".fornecedorCardContainer").animate({
@@ -249,14 +444,22 @@ $(document).ready(function () {
     })
   }
 
+
   let showSuccessMessage = msg => {
     $(".resultIcon").removeClass("fa-times").addClass("fa-check");
     $(".resultMessageContent .message").html(msg)
-    $(".resultMessageContainer").addClass("success").removeClass("hideSlide");
+    $(".resultMessageContainer").removeClass("error").addClass("success").removeClass("hideSlide");
     setTimeout(() => {
       $(".resultMessageContainer").addClass("hideSlide")
     }, 3000)
   }
 
-
+  let showErrorMessage = msg => {
+    $(".resultIcon").removeClass("fa-check").addClass("fa-times");
+    $(".resultMessageContent .message").html(msg)
+    $(".resultMessageContainer").removeClass("success").addClass("error").removeClass("hideSlide");
+    setTimeout(() => {
+      $(".resultMessageContainer").addClass("hideSlide")
+    }, 3000)
+  }
 })

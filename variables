@@ -4,4 +4,5 @@ export DATABASE_URL=https://gestao-encomendas.firebaseio.com
 export PROJECT_ID=gestao-encomendas
 export STORAGE_BUCKET=gestao-encomendas.appspot.com
 export MESSAGING_SENDER_ID=757071903986
+export access_token=ZtH9uTteK4ePGJtqWEQ9wJsaW35T36PXhmALd5hscMTM42uJkuSPvmYcNwATfrRa6g6ETtdcfz
  

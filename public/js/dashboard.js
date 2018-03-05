@@ -1,7 +1,9 @@
 $(document).ready(function () {
   let pedidosEstados;
   let projectStats;
-  fetch('/getEstadosStats')
+  fetch('/getEstadosStats', {
+    credentials: 'include'
+  })
     .then(response => response.json())
     .then(res => {
       pedidosEstados = res;
@@ -34,7 +36,9 @@ $(document).ready(function () {
       }
     }
   });
-  fetch('/getProjectStats')
+  fetch('/getProjectStats', {
+    credentials: 'include'
+  })
     .then(response => response.json())
     .then(res => {
       projectStats = res;

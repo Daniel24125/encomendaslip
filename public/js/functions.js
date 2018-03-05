@@ -27,7 +27,9 @@ $(document).ready(function () {
 
   // LISTA DE FORNECEDORES
 
-  fetch('/getFornecedores')
+  fetch('/getFornecedores', {
+    credentials: 'include'
+  })
     .then(response => response.json())
     .then(res => {
       let showNames = Object.keys(res)
@@ -153,7 +155,7 @@ $(document).ready(function () {
       body: JSON.stringify(sendNewFornecedorData),
       headers: {
         'content-type': 'application/json'
-      },
+      }
     }).then(function (response) {
       return response.json();
     }).then(function (data) {
@@ -182,7 +184,9 @@ $(document).ready(function () {
 
   // LISTA DE CRÉDITOS
 
-  fetch('/getCred')
+  fetch('/getCred', {
+    credentials: 'include'
+  })
   .then(response => response.json())
   .then(res => {
     Object.keys(res).map(name => {

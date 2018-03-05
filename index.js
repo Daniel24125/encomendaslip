@@ -1,4 +1,5 @@
 var express = require('express');
+var cookieParser = require("cookie-parser")
 var bodyParser = require("body-parser");
 var path = require("path");
 var encomendas = require("./routes/encomendas");
@@ -7,6 +8,7 @@ var projects = require("./routes/gestao.js");
 var dashboard = require("./routes/dashboard.js");
 var auth = require("./middleware/auth");
 var app = express();
+
 
 app.set("port", (process.env.PORT || 3000));
 
@@ -18,6 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(auth.router);
 
 app.get('*', function(req, res, next){
+
    if(req.path.includes('log')){
     next();
    }else{

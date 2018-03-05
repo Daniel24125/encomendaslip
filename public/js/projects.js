@@ -1,6 +1,8 @@
 $(document).ready(function () {
   let projNames, projData;
-  fetch('/getProjectsInfo')
+  fetch('/getProjectsInfo', {
+    credentials: 'include'
+  })
     .then(response => response.json())
     .then(res => {
       $(".loader").addClass("hideComponent")

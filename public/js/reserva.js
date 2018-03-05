@@ -2,7 +2,9 @@ $(document).ready(() => {
     let clickable = true;
     let allData, allKeys;
 
-    fetch('/getMaterialList')
+    fetch('/getMaterialList', {
+        credentials: 'include'
+      })
         .then(response => response.json())
         .then(res => {
             $(".loader").addClass("hideComponent")

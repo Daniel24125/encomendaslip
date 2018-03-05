@@ -15,7 +15,9 @@ $(document).ready(function () {
       <div class="fa fa-search"></div>
     `);
     $("#searchTerm").val("")
-    fetch('/getData?num=0')
+    fetch('/getData?num=0', {
+      credentials: 'include'
+    })
     .then(response => response.json())
     .then(res => {
       $(".loader").addClass("hideComponent")
@@ -26,7 +28,9 @@ $(document).ready(function () {
 
   });
 
-  fetch('/getData?num=0')
+  fetch('/getData?num=0', {
+    credentials: 'include'
+  })
     .then(response => response.json())
     .then(res => {
       $(".loader").addClass("hideComponent")
@@ -35,7 +39,9 @@ $(document).ready(function () {
       allData.map((item, index) => retrieveData(allKeys[index], item))
     });
 
-    fetch('/getProjectsNames')
+    fetch('/getProjectsNames', {
+      credentials: 'include'
+    })
       .then(response => response.json())
       .then(res => {
         for(let i = 0; i<res.length; i++){
@@ -45,7 +51,9 @@ $(document).ready(function () {
         }
       });
 
-      fetch('/getFornecedores')
+      fetch('/getFornecedores', {
+        credentials: 'include'
+      })
       .then(response => response.json())
       .then(res => {
         fornecedoresNames = Object.keys(res)
@@ -90,7 +98,9 @@ $(document).ready(function () {
 
   $(".loadContent").click(() => {
     $(".loadContent, .loadMoreContainer .spinner").toggleClass("hideComponent")
-    fetch(`/getData?num=${allData.length}`)
+    fetch(`/getData?num=${allData.length}`, {
+      credentials: 'include'
+    })
       .then(response => response.json())
       .then(res => {
         let newData = res.data.reverse();

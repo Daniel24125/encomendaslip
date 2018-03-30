@@ -110,7 +110,7 @@ iframe {
 .hideSlide {
   top: -300px; }
 
-.confirmDeleteContainer {
+.confirmDeleteContainer, .confirmDeleteContainerCredito {
   width: 350px;
   background: white;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -133,7 +133,7 @@ iframe {
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
   z-index: 1000; }
-  .confirmDeleteContainer .messageContainer {
+  .confirmDeleteContainer .messageContainer, .confirmDeleteContainerCredito .messageContainer {
     width: 100%;
     height: 100px;
     display: -webkit-box;
@@ -144,9 +144,9 @@ iframe {
     align-items: center;
     font-size: 16px;
     color: #6c6c6c; }
-    .confirmDeleteContainer .messageContainer span {
+    .confirmDeleteContainer .messageContainer span, .confirmDeleteContainerCredito .messageContainer span {
       margin: 20px; }
-  .confirmDeleteContainer .footerContainer {
+  .confirmDeleteContainer .footerContainer, .confirmDeleteContainerCredito .footerContainer {
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -163,12 +163,12 @@ iframe {
     -ms-flex-align: center;
     align-items: center;
     color: #3367d6; }
-    .confirmDeleteContainer .footerContainer span {
+    .confirmDeleteContainer .footerContainer span, .confirmDeleteContainerCredito .footerContainer span {
       cursor: pointer;
       margin-right: 20px; }
-    .confirmDeleteContainer .footerContainer .confirmDelete:hover {
+    .confirmDeleteContainer .footerContainer .confirmDelete:hover, .confirmDeleteContainerCredito .footerContainer .confirmDelete:hover {
       color: #2ecc71; }
-    .confirmDeleteContainer .footerContainer .cancelDelete:hover {
+    .confirmDeleteContainer .footerContainer .cancelDelete:hover, .confirmDeleteContainerCredito .footerContainer .cancelDelete:hover {
       color: #e74c3c; }
 
 @-webkit-keyframes rotate {
@@ -310,16 +310,17 @@ iframe {
     border-radius: 5px;
     padding: 10px; }
     .listContainer .listTable tr {
-      height: 40px; }
-      .listContainer .listTable tr .cell {
-        min-width: 100px; }
+      height: 40px;
+      widht: 100%; }
+      .listContainer .listTable tr .big {
+        min-width: 120px; }
       .listContainer .listTable tr th {
         text-align: left;
-        font-size: 13px;
+        font-size: 12px;
         color: #1f1f1f;
         font-weight: 400;
         border-bottom: 1px solid #b0b0b0;
-        padding: 0 5px; }
+        padding: 0 10px; }
       .listContainer .listTable tr:last-child th {
         border: none; }
       .listContainer .listTable tr .stateIcon {

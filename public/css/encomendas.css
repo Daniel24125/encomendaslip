@@ -313,7 +313,7 @@ iframe {
       height: 40px;
       widht: 100%; }
       .listContainer .listTable tr .big {
-        min-width: 120px; }
+        min-width: 140px; }
       .listContainer .listTable tr th {
         text-align: left;
         font-size: 12px;
@@ -324,7 +324,7 @@ iframe {
       .listContainer .listTable tr:last-child th {
         border: none; }
       .listContainer .listTable tr .stateIcon {
-        width: 25px !important;
+        width: 30px !important;
         color: #b0b0b0; }
     .listContainer .listTable .tableHeader th {
       color: #b0b0b0;

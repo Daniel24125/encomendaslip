@@ -159,6 +159,7 @@ $(document).ready(function () {
 
     if ($(".pedidoCredito").hasClass("notClicked") == false) {
       newCredito = "Sim"
+      console.log(newCredito)
     }
 
     if ($(".newFaturaSecretaria").hasClass("notClicked") == false) {

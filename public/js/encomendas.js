@@ -126,7 +126,7 @@ $(document).ready(function () {
   });
 
   $(".estadoContainer .newItemIcon").click(function () {
-  //  $(".estadoContainer .newItemIcon").children().addClass("notClicked")
+    $(".estadoContainer .newItemIcon").children().addClass("notClicked")
     $(this).children().toggleClass("notClicked")
   });
 

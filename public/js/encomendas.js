@@ -131,7 +131,7 @@ $(document).ready(function () {
   });
 
   $(".configContainer .newItemIcon").click(function () {
-    $(this).children().toggleClass("notClicked")
+    //$(this).children().toggleClass("notClicked")
     console.log($(".pedidoCredito").hasClass("notClicked"))
   });
 

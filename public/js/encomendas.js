@@ -132,6 +132,7 @@ $(document).ready(function () {
 
   $(".configContainer .newItemIcon").click(function () {
     $(this).children().toggleClass("notClicked")
+    console.log($(".pedidoCredito").hasClass("notClicked"))
   });
 
   
@@ -191,7 +192,6 @@ $(document).ready(function () {
       "faturaMes": parseInt($("#dataFatura").val().substring(3, 5)),
       "faturaSecretaria": newSecretaria
     };
-    console.log(newCredito)
     if(editItem==false){
       fetch('/addNew', {
         method: 'post',

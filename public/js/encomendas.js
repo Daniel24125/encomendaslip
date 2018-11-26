@@ -439,15 +439,15 @@ $(document).ready(function () {
       <th class="stateIcon estado">
         ${estado}
       </th>
-      <th class="cell">${item.data}</th>
-      <th class="cell">${item.remetente}</th>
-      <th class="cell">${item.rubrica}</th>
-      <th class="cell">${item.fornecedor}</th>
+      <th class="chIcon">${item.data}</th>
+      <th class="chIcon">${item.remetente}</th>
+      <th class="chIcon">${item.rubrica}</th>
+      <th class="chIcon">${item.fornecedor}</th>
       ${notaEncomenda}
-      <th class="cell">${item.fundo}</th>
-      <th class="cell">${item.cabimentado}</th>
-      <th class="cell">${item.faturado}</th>
-      <th class="cell">${dataFatura}</th>
+      <th class="chIcon">${item.fundo}</th>
+      <th class="chIcon">${item.cabimentado}</th>
+      <th class="chIcon">${item.faturado}</th>
+      <th class="chIcon">${dataFatura}</th>
       <th class="stateIcon credito">
         <span title="Acréscimo ao Crédito?" class="fa fa-credit-card ${pedidoCredito}"></span>
       </th>
@@ -471,15 +471,15 @@ $(document).ready(function () {
         <th class="stateIcon estado">
           ${estado}
         </th>
-        <th>${item.data}</th>
-        <th>${item.remetente}</th>
-        <th>${item.rubrica}</th>
-        <th>${item.fornecedor}</th>
+        <th class="chIcon>${item.data}</th>
+        <th class="chIcon>${item.remetente}</th>
+        <th class="chIcon>${item.rubrica}</th>
+        <th class="chIcon>${item.fornecedor}</th>
         ${notaEncomenda}
-        <th>${item.fundo}</th>
-        <th>${item.cabimentado}</th>
-        <th>${item.faturado}</th>
-        <th>${dataFatura}</th>
+        <th class="chIcon>${item.fundo}</th>
+        <th class="chIcon>${item.cabimentado}</th>
+        <th class="chIcon>${item.faturado}</th>
+        <th class="chIcon>${dataFatura}</th>
         <th class="stateIcon credito">
           <span title="Acréscimo ao Crédito?" class="fa fa-credit-card ${pedidoCredito}"></span>
         </th>

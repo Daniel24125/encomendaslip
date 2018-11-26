@@ -132,7 +132,6 @@ $(document).ready(function () {
 
   $(".configContainer .newItemIcon").click(function () {
     $(this).children().toggleClass("notClicked")
-    console.log($(".pedidoCredito").hasClass("notClicked"))
   });
 
   
@@ -155,9 +154,8 @@ $(document).ready(function () {
   let editItem;
   let orderId; 
   $(".saveNewItem").click(function () {
-    let estado, newCredito = "Não",
-      newSecretaria = "Não";
-    console.log($(".newItemIcon .pedidoCredito").hasClass("notClicked"))
+    let estado, newCredito = "Não", newSecretaria = "Não";
+    console.log($(".pedidoCredito").hasClass("notClicked"))
     if ($(".pedidoCredito").hasClass("notClicked") == false) {
       newCredito = "Sim"
     }

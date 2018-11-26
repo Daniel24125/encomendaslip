@@ -313,9 +313,7 @@ $(document).ready(function () {
 
   let updateItem = (id, item, index)=>{
     allData[index] = item;
-    let estado,
-    dataFatura = item.dataFatura,
-    notaEncomenda = item.notaEncomenda;
+    let estado;
   
   switch (item.estado) {
     case "Feito":
@@ -356,7 +354,7 @@ $(document).ready(function () {
   }
 
   let updatedItem = [item.data, item.remetente, item.rubrica, item.fornecedor, item.notaEncomenda, item.fundo, item.cabimentado, item.faturado, item.dataFatura]
-
+  console.log(item.fornecedor)
   $(`#${orderId} .estado`).html(estado)
   $(`#${orderId}`).children(".cell").each(function(i){
     $(this).html(updatedItem[i])

@@ -128,11 +128,12 @@ $(document).ready(function () {
   $(".estadoContainer .newItemIcon").click(function () {
     $(".estadoContainer .newItemIcon").children().addClass("notClicked")
     $(this).children().toggleClass("notClicked")
+    console.log("estado item state: "+$(".pedidoCredito").hasClass("notClicked"))
   });
 
   $(".configContainer .newItemIcon").click(function () {
     $(this).children().toggleClass("notClicked")
-    console.log($(".pedidoCredito").hasClass("notClicked"))
+    console.log("config item state: "+$(".pedidoCredito").hasClass("notClicked"))
   });
 
   

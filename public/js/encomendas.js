@@ -471,15 +471,15 @@ $(document).ready(function () {
         <th class="stateIcon estado">
           ${estado}
         </th>
-        <th class="chIcon>${item.data}</th>
-        <th class="chIcon>${item.remetente}</th>
-        <th class="chIcon>${item.rubrica}</th>
-        <th class="chIcon>${item.fornecedor}</th>
+        <th class="chIcon">${item.data}</th>
+        <th class="chIcon">${item.remetente}</th>
+        <th class="chIcon">${item.rubrica}</th>
+        <th class="chIcon">${item.fornecedor}</th>
         ${notaEncomenda}
-        <th class="chIcon>${item.fundo}</th>
-        <th class="chIcon>${item.cabimentado}</th>
-        <th class="chIcon>${item.faturado}</th>
-        <th class="chIcon>${dataFatura}</th>
+        <th class="chIcon">${item.fundo}</th>
+        <th class="chIcon">${item.cabimentado}</th>
+        <th class="chIcon">${item.faturado}</th>
+        <th class="chIcon">${dataFatura}</th>
         <th class="stateIcon credito">
           <span title="Acréscimo ao Crédito?" class="fa fa-credit-card ${pedidoCredito}"></span>
         </th>

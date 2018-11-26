@@ -156,10 +156,9 @@ $(document).ready(function () {
   $(".saveNewItem").click(function () {
     let estado, newCredito = "Não",
       newSecretaria = "Não";
-
+    console.log($(".pedidoCredito").hasClass("notClicked"))
     if ($(".pedidoCredito").hasClass("notClicked") == false) {
       newCredito = "Sim"
-      console.log(newCredito)
     }
 
     if ($(".newFaturaSecretaria").hasClass("notClicked") == false) {

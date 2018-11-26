@@ -354,7 +354,7 @@ $(document).ready(function () {
   }
 
   let updatedItem = [item.data, item.remetente, item.rubrica, item.fornecedor, item.notaEncomenda, item.fundo, item.cabimentado, item.faturado, item.dataFatura]
-  console.log(item.fornecedor)
+  console.log(estado)
   $(`#${orderId} .estado`).html(estado)
   $(`#${orderId}`).children(".cell").each(function(i){
     $(this).html(updatedItem[i])

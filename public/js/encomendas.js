@@ -211,7 +211,6 @@ $(document).ready(function () {
           showSuccessMessage(data.msg)
         });
     }else{
-      console.log(saveValues.pedidoCredito);
       fetch('/editOrder', {
         method: 'post',
         body: JSON.stringify({

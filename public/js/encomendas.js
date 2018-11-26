@@ -155,7 +155,6 @@ $(document).ready(function () {
   let orderId; 
   $(".saveNewItem").click(function () {
     let estado, newCredito = "Não", newSecretaria = "Não";
-    console.log($(".pedidoCredito").hasClass("notClicked"))
     if ($(".pedidoCredito").hasClass("notClicked") == false) {
       newCredito = "Sim"
     }
@@ -192,7 +191,7 @@ $(document).ready(function () {
       "faturaMes": parseInt($("#dataFatura").val().substring(3, 5)),
       "faturaSecretaria": newSecretaria
     };
-
+    console.log(newCredito)
     if(editItem==false){
       fetch('/addNew', {
         method: 'post',

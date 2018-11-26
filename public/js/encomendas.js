@@ -128,12 +128,10 @@ $(document).ready(function () {
   $(".estadoContainer .newItemIcon").click(function () {
     $(".estadoContainer .newItemIcon").children().addClass("notClicked")
     $(this).children().toggleClass("notClicked")
-    console.log("estado item state: "+$("#addCredit").hasClass("notClicked"))
   });
 
   $(".configContainer .newItemIcon").click(function () {
     $(this).children().toggleClass("notClicked")
-    console.log("config item state: "+$("#addCredit").hasClass("notClicked"))
   });
 
   
@@ -157,7 +155,7 @@ $(document).ready(function () {
   let orderId; 
   $(".saveNewItem").click(function () {
     let estado, newCredito = "Não", newSecretaria = "Não";
-    if ($(".pedidoCredito").hasClass("notClicked") == false) {
+    if ($("#addCredit").hasClass("notClicked") == false) {
       newCredito = "Sim"
     }
 
@@ -282,7 +280,7 @@ $(document).ready(function () {
     editItem = true;
     orderId = $(this).parent().attr("id");
     let index = allKeys.indexOf(orderId);
-    $(".pedidoCredito").addClass("notClicked");
+    $("#addCredit").addClass("notClicked");
     $(".newFaturaSecretaria").addClass("notClicked");
 
     $("#data").val(allData[index].data);
@@ -300,7 +298,7 @@ $(document).ready(function () {
     $(".newItemIcon").children().addClass("notClicked");
     $(`#${allData[index].estado}`).removeClass("notClicked")
     if(allData[index].pedidoCredito=="Sim"){
-      $(".pedidoCredito").removeClass("notClicked");
+      $("#addCredit").removeClass("notClicked");
     }
     if(allData[index].faturaSecretaria=="Sim"){
       $(".newFaturaSecretaria").removeClass("notClicked");

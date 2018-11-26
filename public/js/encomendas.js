@@ -354,7 +354,6 @@ $(document).ready(function () {
   }
 
   let updatedItem = [item.data, item.remetente, item.rubrica, item.fornecedor, item.notaEncomenda, item.fundo, item.cabimentado, item.faturado, item.dataFatura]
-  console.log(estado)
   $(`#${orderId} .estado`).html(estado)
   $(`#${orderId}`).children(".cell").each(function(i){
     $(this).html(updatedItem[i])
@@ -471,15 +470,15 @@ $(document).ready(function () {
         <th class="stateIcon estado">
           ${estado}
         </th>
-        <th>${item.data}</th>
-        <th>${item.remetente}</th>
-        <th>${item.rubrica}</th>
-        <th>${item.fornecedor}</th>
+        <th class="cell>${item.data}</th>
+        <th class="cell>${item.remetente}</th>
+        <th class="cell>${item.rubrica}</th>
+        <th class="cell>${item.fornecedor}</th>
         ${notaEncomenda}
-        <th>${item.fundo}</th>
-        <th>${item.cabimentado}</th>
-        <th>${item.faturado}</th>
-        <th>${dataFatura}</th>
+        <th class="cell>${item.fundo}</th>
+        <th class="cell>${item.cabimentado}</th>
+        <th class="cell>${item.faturado}</th>
+        <th class="cell>${dataFatura}</th>
         <th class="stateIcon credito">
           <span title="Acréscimo ao Crédito?" class="fa fa-credit-card ${pedidoCredito}"></span>
         </th>

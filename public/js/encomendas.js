@@ -126,12 +126,12 @@ $(document).ready(function () {
   });
 
   $(".estadoContainer .newItemIcon").click(function () {
-    $(".estadoContainer .newItemIcon").children().addClass("notClicked")
+  //  $(".estadoContainer .newItemIcon").children().addClass("notClicked")
     $(this).children().toggleClass("notClicked")
   });
 
   $(".configContainer .newItemIcon").click(function () {
-    //$(this).children().toggleClass("notClicked")
+    $(this).children().toggleClass("notClicked")
     console.log($(".pedidoCredito").hasClass("notClicked"))
   });
 

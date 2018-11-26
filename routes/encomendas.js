@@ -138,16 +138,13 @@ router.get("/getCred", (req, res) => {
     console.log(err);
   });
   
-  ref.orderByChild("fundo").equalTo("Crédito").once("value", (snap) => {
+  ref.once("value", (snap) => {
     let queryData = snap.val();
     let d = new Date();
     let currentDateYear = d.getFullYear();
-    let currentDateMes = d.getMonth() + 1;
     if(queryData != null){
       Object.keys(creditos).map((value) => {
-        let offsetCredMes = creditos[value][1],
-        offsetCredAno = creditos[value][2],
-        realCredValue = creditos[value][0];
+        let offsetCredMes = creditos[value][1], offsetCredAno = creditos[value][2], realCredValue = creditos[value][0];
         Object.keys(queryData).map((order) => {
           if (queryData[order].fornecedor == value && queryData[order].fundo == "Crédito" && ((queryData[order].pedidoMes >= offsetCredMes && queryData[order].pedidoAno == currentDateYear) || queryData[order].pedidoAno > offsetCredAno)) {
             realCredValue -= parseFloat(queryData[order].faturado)

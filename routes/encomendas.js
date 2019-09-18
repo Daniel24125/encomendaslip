@@ -141,7 +141,7 @@ router.get("/getCred", (req, res) => {
  ref.once("value", (snap) => {
     let queryData = snap.val();
     let d = new Date().getTime();
-    let currentDateYear = d.getFullYear();
+    //let currentDateYear = d.getFullYear();
     if(queryData != null){
       Object.keys(creditos).map((value) => {
         let credTs = creditos[value][3], offsetCredMes = creditos[value][1], offsetCredAno = creditos[value][2], realCredValue = creditos[value][0];

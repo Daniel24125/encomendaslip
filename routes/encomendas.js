@@ -140,7 +140,7 @@ router.get("/getCred", (req, res) => {
   
  ref.once("value", (snap) => {
     let queryData = snap.val();
-    let d = new Date().getTime();
+    let d = new Date();
     //let currentDateYear = d.getFullYear();
     if(queryData != null){
       Object.keys(creditos).map((value) => {

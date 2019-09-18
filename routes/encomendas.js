@@ -138,15 +138,15 @@ router.get("/getCred", (req, res) => {
     console.log(err);
   });
   
- ref.once("value", (snap) => {
+   ref.once("value", (snap) => {
     let queryData = snap.val();
-    let d = new Date();
-    //let currentDateYear = d.getFullYear();
+    let d = new Date().getTime();
+    // let currentDateYear = d.getFullYear();
     if(queryData != null){
       Object.keys(creditos).map((value) => {
         let credTs = creditos[value][3], offsetCredMes = creditos[value][1], offsetCredAno = creditos[value][2], realCredValue = creditos[value][0];
         Object.keys(queryData).map((order) => {
-          let pedido_data_ts = getTimestamp(queryData[order].data)
+          let pedido_data_ts = new Date().getTime(queryData[order].data) 
           // if (queryData[order].fornecedor == value && queryData[order].fundo == "Crédito" && ((queryData[order].pedidoMes >= offsetCredMes && queryData[order].pedidoAno == currentDateYear) || queryData[order].pedidoAno > offsetCredAno)) {
           if (queryData[order].fornecedor == value && queryData[order].fundo == "Crédito" && pedido_data_ts > credTs) {  
             realCredValue -= parseFloat(queryData[order].faturado)
@@ -163,11 +163,6 @@ router.get("/getCred", (req, res) => {
   });
 });
 
-
-let getTimestamp = (date)=>{
-    let newDate = date.split("/");    
-    return new Date(`${newDate[2]}-${newDate[1]}-${newDate[0]}`).getTime()
-}
 
 router.post("/saveCredito", function (req, res) {
   let d = new Date();

@@ -172,7 +172,7 @@ let getTimestamp = (date)=>{
 
 router.post("/saveCredito", function (req, res) {
   let d = new Date();
-  let ts = d.getTime();
+  let ts = getTimestamp(`${d.getFullYear()}/${g.getMonth()}/${d.getDay()}`);
   let currentDateYear = d.getFullYear();
   let currentDateMes = d.getMonth() + 1;
   credRef.child(req.body.name).set([

@@ -164,12 +164,6 @@ router.get("/getCred", (req, res) => {
 });
 
 
-let getTimestamp = (date)=>{
-    let newDate = date.split("/");    
-    return new Date(newDate[2], newDate[1], newDate[0]).getTime()
-}
-
-
 router.post("/saveCredito", function (req, res) {
   let d = new Date();
   let ts = getTimestamp(`${d.getFullYear()}/${g.getMonth()}/${d.getDay()}`);
@@ -186,6 +180,11 @@ router.post("/saveCredito", function (req, res) {
     value: req.body.value
   });
 });
+
+let getTimestamp = (date)=>{
+    let newDate = date.split("/");    
+    return new Date(newDate[2], newDate[1], newDate[0]).getTime()
+}
 
 
 router.delete("/removeCred", function (req, res) {

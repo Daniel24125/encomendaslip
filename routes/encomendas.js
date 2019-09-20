@@ -166,7 +166,7 @@ router.get("/getCred", (req, res) => {
 
 router.post("/saveCredito", function (req, res) {
   let d = new Date();
-  let ts = getTimestamp(`${d.getFullYear()}/${g.getMonth()}/${d.getDay()}`);
+  let ts = getTimestamp(`${d.getFullYear()}/${d.getMonth()}/${d.getDay()}`);
   let currentDateYear = d.getFullYear();
   let currentDateMes = d.getMonth() + 1;
   credRef.child(req.body.name).set([

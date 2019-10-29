@@ -183,7 +183,7 @@ router.post("/saveCredito", function (req, res) {
 
 let getTimestamp = (date)=>{
     let newDate = date.split("/");    
-    return new Date(newDate[2], newDate[1], newDate[0]).getTime()
+    return Date.UTC(newDate[2], newDate[1]-1, newDate[0])
 }
 
 

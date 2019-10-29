@@ -189,9 +189,11 @@ $(document).ready(function () {
       "dataFatura": $("#dataFatura").val(),
       "faturaAno": parseInt($("#dataFatura").val().substring(6, 10)),
       "faturaMes": parseInt($("#dataFatura").val().substring(3, 5)),
-      "faturaSecretaria": newSecretaria
+      "faturaSecretaria": newSecretaria, 
+      
     };
     if(editItem==false){
+      saveValues["pedido_data_tmstp"] = Date.now()
       fetch('/addNew', {
         method: 'post',
         body: JSON.stringify(saveValues),

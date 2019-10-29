@@ -175,7 +175,7 @@ router.post("/saveCredito", function (req, res) {
     currentDateYear, 
     ts])
   res.send({
-    msg: "Os seus dados foram alterados com sucesso!",
+    msg: "Os seus dados foram alterados com sucesso! with timestamp: " + ts ,
     name: req.body.name,
     value: req.body.value
   });
